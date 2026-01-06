@@ -1,0 +1,143 @@
+html {
+    background: var(--white);
+    color: var(--foreground);
+    transition: background var(--transition), color var(--transition);
+}
+
+html::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--background);
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+    z-index: -1;
+}
+
+html.darkmode::before {
+    transform: translateX(0);
+}
+
+html.light {
+    --background: var(--white);
+    --foreground: var(--black);
+    --nav-link: var(--light-grey);
+    --nav-link-hover: var(--dark-green);
+    --transition: 0.5s ease;
+}
+
+html.dark {
+    --background: var(--black);
+    --foreground: var(--white);
+    --nav-link: var(--light-green);
+    --nav-link-hover: var(--peach);
+    --transition: 0.1s ease;
+    --triangle-delay: 0.5s;
+}
+
+.hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.toggle-wrapper {
+    width: 80px;
+    display: block;
+}
+
+.toggle {
+    height: 40px;
+    width: 82px;
+    border-radius: 30px;
+    padding: 3.5px;
+    position: relative;
+    margin: auto;
+    cursor: pointer;
+    background: var(--foreground);
+    transition: background var(--transition);
+}
+
+.toggle::before {
+    content: "";
+    display: block;
+    height: 35px;
+    width: 35px;
+    top: 2px;
+    border-radius: 20px;
+    position: absolute;
+    z-index: 2;
+    background: var(--background);
+    transform: translateX(0);
+    transition: transform var(--transition), background var(--transition);
+}
+
+.toggle.dark::before {
+    transform: translateX(40px);
+}
+
+.toggle input {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+}
+
+.toggle .icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin: 0 4px;
+}
+
+.toggle .icons img {
+    height: 18px;
+    width: 18px;
+    z-index: 0;
+    filter: brightness(0);
+    transition: filter var(--transition);
+}
+
+html.dark .toggle .icons img {
+    filter: brightness(0) invert(1);
+}
+
+.toggle .icons .icon {
+    color: var(--black);
+}
+
+html.dark .toggle .icons .icon {
+    color: var(--white);
+}
+
+@media (min-width: 768px) {
+    .toggle-wrapper {
+        width: 130px;
+    }
+
+    .toggle {
+        height: 65px;
+        width: 130px;
+        padding: 12px;
+        border-radius: 40px;
+    }
+
+    .toggle::before {
+        height: 41px;
+        width: 41px;
+        border-radius: 30px;
+    }
+
+    .toggle.dark::before {
+        transform: translateX(65px);
+    }
+
+    .toggle .icons img {
+        height: 30px;
+        width: 30px;
+    }
+}

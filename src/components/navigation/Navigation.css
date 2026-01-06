@@ -1,0 +1,102 @@
+html.darkmode .container-logo::after {
+    border-color: transparent transparent var(--white) transparent;
+}
+
+html.dark .container-logo::after {
+    border-color: transparent transparent var(--black) transparent;
+}
+
+nav {
+    background-color: var(--light-grey);
+    height: 6.2rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-outercontainer {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.container-logo {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.brand-logo {
+    width: 50px;
+}
+
+.brand-name {
+    text-transform: uppercase;
+    font-family: "Nanum Pen Script", Georgia, "Times New Roman", serif;
+    color: var(--white);
+    font-size: 2em;
+}
+
+.nav-links {
+    display: none;
+    font-size: 1em;
+    list-style: none;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.nav-links.open {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: absolute;
+    top: 6.2rem;
+    right: 0;
+    background: var(--light-grey);
+    padding: 2rem;
+    width: 200px;
+    font-size: 1.3rem;
+}
+
+nav a {
+    color: var(--nav-link);
+    transition: color var(--transition);
+}
+
+nav a:hover {
+    color: var(--nav-link-hover);
+}
+
+.menu-bar {
+    display: block;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+        padding-left: 0;
+        font-size: 2em;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .nav-outercontainer {
+        max-width: 1200px;
+    }
+
+    .menu-bar {
+        display: none;
+    }
+
+    .menu-container {
+        outline: 2px solid red;
+    }
+}
