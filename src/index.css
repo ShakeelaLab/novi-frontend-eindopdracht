@@ -1,23 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
-:root[data-theme="light"] {
-    --text: #283618;
-    --background: #fef8f6;
-    --primary: #606C38;
-    --secondary: #BC6C25;
-    --accent: #DDA15E;
+@import url('https://fonts.googleapis.com/css2?family=Homenaje&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Nanum+Pen+Script&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-:root[data-theme="dark"] {
-    --text: #dae7ca;
-    --background: #090301;
-    --primary: #bbc893;
-    --secondary: #da8a44;
-    --accent: #a06522;
+
+:root {
+    --black: #333533;
+    --white: #FAF9F9;
+    --dark-green: #89B0AE;
+    --light-grey: #555B6E;
+    --light-green: #BEE3DB;
+    --peach: #FFD6BA;
 }
 
 body {
-    font-family: "Nunito",Calibri,Verdana,serif;
+    font-family: "Homenaje",Calibri,Verdana,serif;
     font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5 {
@@ -38,3 +39,9 @@ h4 {font-size: 1.777rem; /* 28.48px */}
 h5 {font-size: 1.333rem; /* 21.28px */}
 
 small {font-size: 0.750rem; /* 12px */}
+
+
+button, input {
+    font-family: inherit;
+}
+
