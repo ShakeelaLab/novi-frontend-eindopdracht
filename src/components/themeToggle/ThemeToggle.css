@@ -9,8 +9,8 @@ html::before {
     position: fixed;
     inset: 0;
     background: var(--background);
-    transform: translateX(-100%);
-    transition: transform var(--transition);
+    transform: none;
+    transition: transform 0.3s ease, background var(--transition);
     z-index: -1;
 }
 
@@ -21,17 +21,17 @@ html.darkmode::before {
 html.light {
     --background: var(--white);
     --foreground: var(--black);
-    --nav-link: var(--light-grey);
-    --nav-link-hover: var(--dark-green);
-    --transition: 0.5s ease;
+    --nav-link: var(--white);
+    --nav-link-hover: var(--yellow);
+    --transition: 0.3s ease;
 }
 
 html.dark {
     --background: var(--black);
     --foreground: var(--white);
-    --nav-link: var(--light-green);
-    --nav-link-hover: var(--peach);
-    --transition: 0.1s ease;
+    --nav-link: var(--light-blue);
+    --nav-link-hover: var(--yellow);
+    --transition: 0.3s ease;
     --triangle-delay: 0.5s;
 }
 
@@ -47,14 +47,13 @@ html.dark {
 
 .toggle-wrapper {
     width: 80px;
-    display: block;
 }
 
 .toggle {
-    height: 40px;
-    width: 82px;
+    height: 45px;
+    width: 89px;
     border-radius: 30px;
-    padding: 3.5px;
+    padding: 3.5px 3.5px 3.5px 8px;
     position: relative;
     margin: auto;
     cursor: pointer;
@@ -67,7 +66,6 @@ html.dark {
     display: block;
     height: 35px;
     width: 35px;
-    top: 2px;
     border-radius: 20px;
     position: absolute;
     z-index: 2;
@@ -116,7 +114,7 @@ html.dark .toggle .icons .icon {
 
 @media (min-width: 768px) {
     .toggle-wrapper {
-        width: 130px;
+        margin: 0 auto;
     }
 
     .toggle {
@@ -133,11 +131,20 @@ html.dark .toggle .icons .icon {
     }
 
     .toggle.dark::before {
-        transform: translateX(65px);
+        transform: translateX(77px);
     }
 
     .toggle .icons img {
         height: 30px;
         width: 30px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .toggle {
+        height: 65px;
+        width: 130px;
+        padding: 12px;
+        border-radius: 40px;
     }
 }

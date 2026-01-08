@@ -1,30 +1,41 @@
 import './Navigation.css';
-import brandLogo from "../../assets/svg/brand-logo.svg";
-import ThemeToggle from "/src/components/themeToggle/ThemeToggle.jsx";
+import logo from "../../assets/svg/logo.svg"
+import ThemeToggle
+    from "/src/components/themeToggle/ThemeToggle.jsx";
 import React from "react";
 import MenuBar from "../menuBar/MenuBar.jsx";
+import {NavLink} from "react-router-dom";
 
 function Navigation() {
     const [isDark, setIsDark] = React.useState(false);
     const [menuOpen, setMenuOpen] = React.useState(false);
+    const isActive = ({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'
 
     return (
         <>
             <nav>
                 <div className="nav-outercontainer">
-                    <div className="container-logo">
-                        <p className="brand-name">Bookstore</p>
-                        <img className="brand-logo" src={brandLogo} alt="Brand logo" />
-                    </div>
-
+                    <img className="company-logo" src={logo}
+                         alt="Brand logo"/>
                     <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-                        <li>Home</li>
-                        <li>Favorites</li>
-                        <li>Login</li>
+                        <li>
+                            <NavLink
+                                className={isActive}
+                                to="/">Home</NavLink></li>
+                        <li><NavLink
+                            className={isActive}
+                            to="favorites">Favorites</NavLink>
+                        </li>
+                        <li><NavLink
+                            className={isActive}
+                            to="login">Login</NavLink></li>
+                        <li className="mobile-toggle"> <ThemeToggle onThemeChange={setIsDark} /> </li>
                     </ul>
-                    <ThemeToggle onThemeChange={setIsDark} />
+                    <div className="nav-toggle-wrapper">
+                    <ThemeToggle onThemeChange={setIsDark}/>
+                    </div>
                     <MenuBar
-                        className="menu-bar"
+                        className={`menu-bar ${menuOpen ? "open" : ""}`}
                         onClick={() => setMenuOpen(prev => !prev)}
                     />
                 </div>
