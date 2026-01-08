@@ -1,9 +1,9 @@
-html.darkmode .container-logo::after {
-    border-color: transparent transparent var(--white) transparent;
+.active-menu-link {
+    border-bottom: 1px solid white;
 }
 
-html.dark .container-logo::after {
-    border-color: transparent transparent var(--black) transparent;
+.default-menu-link {
+    border-bottom: none;
 }
 
 nav {
@@ -12,6 +12,13 @@ nav {
     display: flex;
     align-items: center;
     width: 100%;
+    position: fixed;
+}
+
+.nav-links a {
+    color: var(--nav-link);
+    transition: color var(--transition);
+    text-decoration: none;
 }
 
 .nav-outercontainer {
@@ -23,31 +30,23 @@ nav {
     padding: 0 2rem;
 }
 
-.container-logo {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    align-items: center;
-}
-
-.brand-logo {
-    width: 50px;
-}
-
-.brand-name {
-    text-transform: uppercase;
-    font-family: "Nanum Pen Script", Georgia, "Times New Roman", serif;
-    color: var(--white);
-    font-size: 2em;
+.company-logo {
+    width: 250px;
 }
 
 .nav-links {
     display: none;
-    font-size: 1em;
     list-style: none;
-    color: var(--white);
-    text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+
+.nav-links a {
+    color: var(--nav-link);
+    transition: color var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--nav-link-hover);
 }
 
 .nav-links.open {
@@ -60,43 +59,70 @@ nav {
     background: var(--light-grey);
     padding: 2rem;
     width: 200px;
-    font-size: 1.3rem;
-}
-
-nav a {
-    color: var(--nav-link);
-    transition: color var(--transition);
-}
-
-nav a:hover {
-    color: var(--nav-link-hover);
 }
 
 .menu-bar {
     display: block;
     cursor: pointer;
+    margin-left: 0;
 }
+
+.nav-toggle-wrapper {
+    margin-left: 0;
+    display: none;
+}
+
+.mobile-toggle {
+    display: block;
+}
+
 
 @media screen and (min-width: 768px) {
     .nav-links {
         display: flex;
         flex-direction: row;
-        gap: 3rem;
+        gap: 1rem;
         padding-left: 0;
-        font-size: 2em;
-        text-transform: uppercase;
         letter-spacing: 0.05em;
-    }
-
-    .nav-outercontainer {
-        max-width: 1200px;
     }
 
     .menu-bar {
         display: none;
     }
 
-    .menu-container {
-        outline: 2px solid red;
+    .nav-links.open {
+        flex-direction: row;
+        position: static;
+        background: none;
+        padding: 0;
+        width: auto;
+    }
+
+    .nav-toggle-wrapper {
+        display: block;
+    }
+
+    .mobile-toggle {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+    .nav-outercontainer {
+        position: relative;
+        justify-content: flex-start;
+    }
+
+    .company-logo {
+        width: 400px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 3rem;
+        margin-left: auto;
+        margin-right: 2rem;
+        border: none;
     }
 }
