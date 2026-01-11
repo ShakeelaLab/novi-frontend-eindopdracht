@@ -1,7 +1,27 @@
+/* ────────────────────────────────────────────────────────────────
+   TABLE OF CONTENTS
+   1. Global Styles
+      1.1 Main
+   2. Areas
+   3. Media Queries
+   ──────────────────────────────────────────────────────────────── */
+
+/* ── 1. Global Styles ─────────────────────────────────────────── */
+/*    1.1 Main ──────────────────────────────────────────────── */
+
 main {
-    padding: 6.2rem 2rem 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 6.2rem 0 0 0;
+    max-width: 80%;
+    border: 2px solid firebrick;
 }
 
+/* ── 2. Areas ─────────────────────────────────────────────────── */
+
+/* ── 3. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
     margin: 0 auto;
     max-width: 1200px;

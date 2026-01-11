@@ -29,10 +29,10 @@ function Navigation() {
                         <li><NavLink
                             className={isActive}
                             to="login">Login</NavLink></li>
-                        <li className="mobile-toggle"> <ThemeToggle onThemeChange={setIsDark} /> </li>
+                        <li className="mobile-toggle"> <ThemeToggle/> </li>
                     </ul>
                     <div className="nav-toggle-wrapper">
-                    <ThemeToggle onThemeChange={setIsDark}/>
+                    <ThemeToggle/>
                     </div>
                     <MenuBar
                         className={`menu-bar ${menuOpen ? "open" : ""}`}
@@ -40,7 +40,6 @@ function Navigation() {
                     />
                 </div>
             </nav>
-
         </>
     );
 }
