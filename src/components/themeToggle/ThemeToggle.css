@@ -1,10 +1,10 @@
-html {
-    background: var(--white);
+:root {
+    background: var(--background);
     color: var(--foreground);
     transition: background var(--transition), color var(--transition);
 }
 
-html::before {
+:root::before {
     content: "";
     position: fixed;
     inset: 0;
@@ -12,27 +12,6 @@ html::before {
     transform: none;
     transition: transform 0.3s ease, background var(--transition);
     z-index: -1;
-}
-
-html.darkmode::before {
-    transform: translateX(0);
-}
-
-html.light {
-    --background: var(--white);
-    --foreground: var(--black);
-    --nav-link: var(--white);
-    --nav-link-hover: var(--yellow);
-    --transition: 0.3s ease;
-}
-
-html.dark {
-    --background: var(--black);
-    --foreground: var(--white);
-    --nav-link: var(--light-blue);
-    --nav-link-hover: var(--yellow);
-    --transition: 0.3s ease;
-    --triangle-delay: 0.5s;
 }
 
 .hidden {
@@ -66,6 +45,7 @@ html.dark {
     display: block;
     height: 35px;
     width: 35px;
+    top: 5px;
     border-radius: 20px;
     position: absolute;
     z-index: 2;
@@ -100,7 +80,7 @@ html.dark {
     transition: filter var(--transition);
 }
 
-html.dark .toggle .icons img {
+[data-theme="dark"] .toggle .icons img {
     filter: brightness(0) invert(1);
 }
 
@@ -108,7 +88,7 @@ html.dark .toggle .icons img {
     color: var(--black);
 }
 
-html.dark .toggle .icons .icon {
+[data-theme="dark"] .toggle .icons .icon {
     color: var(--white);
 }
 
@@ -127,11 +107,12 @@ html.dark .toggle .icons .icon {
     .toggle::before {
         height: 41px;
         width: 41px;
+        top: 10px;
         border-radius: 30px;
     }
 
     .toggle.dark::before {
-        transform: translateX(77px);
+        transform: translateX(65px);
     }
 
     .toggle .icons img {

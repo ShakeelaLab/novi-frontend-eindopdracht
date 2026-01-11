@@ -1,18 +1,33 @@
+/* ────────────────────────────────────────────────────────────────
+   TABLE OF CONTENTS
+   1. Global Styles
+      1.1 Menu link
+   2. Areas
+      2.1 Navigation
+   3. Media Queries
+   ──────────────────────────────────────────────────────────────── */
+
+/* ── 1. Global Styles ─────────────────────────────────────────── */
+/*    1.1 Menu Link Underline ──────────────────────────────────────────────── */
+
 .active-menu-link {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--nav-link);
 }
 
 .default-menu-link {
     border-bottom: none;
 }
+/* ── 2. Areas ─────────────────────────────────────────────────── */
+
+/*    2.1 Navigation ──────────────────────────────────────────────── */
 
 nav {
     background-color: var(--light-grey);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     height: 6.2rem;
-    display: flex;
-    align-items: center;
     width: 100%;
     position: fixed;
+    display: flex;
 }
 
 .nav-links a {
@@ -46,7 +61,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: var(--nav-link-hover);
+    color: var(--nav-link);
 }
 
 .nav-links.open {
@@ -76,6 +91,7 @@ nav {
     display: block;
 }
 
+/* ── 3. Media Queries ─────────────────────────────────────────── */
 
 @media screen and (min-width: 768px) {
     .nav-links {
@@ -112,6 +128,7 @@ nav {
     .nav-outercontainer {
         position: relative;
         justify-content: flex-start;
+        max-width: 90%;
     }
 
     .company-logo {
