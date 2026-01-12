@@ -1,12 +1,15 @@
 import './Button.css';
 
-function Button({buttontext}) {
+function Button({text,type,className}) {
     return (
         <>
             <div>
-           <button className="button-styling">{buttontext}</button>
+                <button
+                    className={`button-styling ${className}`}
+                    type={type}
+                >{text}</button>
             </div>
-            </>
+        </>
     );
 }
 

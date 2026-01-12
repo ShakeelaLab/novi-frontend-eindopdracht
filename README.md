@@ -36,9 +36,3 @@ Wanneer dit klaar is, kun je de applicatie starten met behulp van:
 `npm run dev`
 
 Open (http://localhost:5173) om de pagina in de browser te bekijken.
-
-
-## Installeren
-
-
-
