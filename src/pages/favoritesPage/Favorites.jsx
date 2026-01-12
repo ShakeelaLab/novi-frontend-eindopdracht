@@ -10,9 +10,6 @@ function Favorites() {
                 <h3>Header 3</h3>
                 <h4>Header 4</h4>
                 <h5>Header 5</h5>
-            <Button
-            buttontext='button'
-            />
                 <p>hier komt tekst</p>
                 <p>Lorem ipsum dolor sit amet, consectetur
                     adipisicing elit. Culpa dolorum fugit ipsam

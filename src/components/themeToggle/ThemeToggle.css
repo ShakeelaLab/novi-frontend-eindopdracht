@@ -37,7 +37,13 @@
     margin: auto;
     cursor: pointer;
     background: var(--foreground);
-    transition: background var(--transition);
+    /*transition: background var(--transition);*/
+    z-index: 100;
+}
+
+.toggle-wrapper, .toggle {
+    position: relative;
+    z-index: 10;
 }
 
 .toggle::before {
@@ -92,7 +98,7 @@
     color: var(--white);
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
     .toggle-wrapper {
         margin: 0 auto;
     }
