@@ -22,9 +22,8 @@
 /*    2.1 Navigation ──────────────────────────────────────────────── */
 
 nav {
-    background-color: var(--light-grey);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    height: 6.2rem;
+    background: var(--nav-footer);
+    height: 6rem;
     width: 100%;
     position: fixed;
     display: flex;
@@ -69,9 +68,9 @@ nav {
     flex-direction: column;
     gap: 1.5rem;
     position: absolute;
-    top: 6.2rem;
+    top: 6rem;
     right: 0;
-    background: var(--light-grey);
+    background-color: var(--menu-bar);
     padding: 2rem;
     width: 200px;
     z-index: 999;

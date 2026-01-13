@@ -13,6 +13,7 @@ function Navigation() {
 
     return (
         <>
+            <header>
             <nav>
                 <div className="nav-outercontainer">
                     <img className="company-logo" src={logo}
@@ -40,6 +41,7 @@ function Navigation() {
                     />
                 </div>
             </nav>
+            </header>
         </>
     );
 }
