@@ -9,7 +9,7 @@
 :root {
     --black: #333533;
     --white: #FAF9F9;
-    --dark-green: #89B0AE;
+    --dark-blue: #b0cae6;
     --light-grey: #555B6E;
     --light-blue: #CFDBD5;
     --yellow: #F5CB5C; /* Light theme */
@@ -18,6 +18,8 @@
     --nav-link: var(--white);
     --nav-link-hover: var(--yellow);
     --transition: 0.3s ease;
+    --nav-footer: linear-gradient(90deg, #243748, #4B749F);
+    --menu-bar: #4B749F;
 }
 
 [data-theme="dark"] {
@@ -33,6 +35,9 @@ body {
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5 {

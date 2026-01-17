@@ -12,6 +12,7 @@ function Home() {
                 <label className="search-wrapper">
                     <InputField
                         type="text"
+                        name="search-field"
                         placeholder="title book..."
                         className="search-input"
                     />
