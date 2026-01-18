@@ -23,7 +23,6 @@
 
 nav {
     background: var(--nav-footer);
-    height: 6rem;
     width: 100%;
     position: fixed;
     display: flex;
@@ -68,7 +67,7 @@ nav {
     flex-direction: column;
     gap: 1.5rem;
     position: absolute;
-    top: 6rem;
+    top: 4.2rem;
     right: 0;
     background-color: var(--menu-bar);
     padding: 2rem;
@@ -131,7 +130,7 @@ nav {
     }
 
     .company-logo {
-        width: 400px;
+        width: 300px;
     }
 
     .nav-links {
