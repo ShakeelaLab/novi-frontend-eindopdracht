@@ -13,7 +13,7 @@ function Home() {
                     <InputField
                         type="text"
                         name="search-field"
-                        placeholder="title book..."
+                        placeholder="Search by title or author"
                         className="search-input"
                     />
                     <Button
@@ -24,7 +24,8 @@ function Home() {
                 </label>
             </form>
             <section className="main-text">
-                <p><strong>Discover Your Next Great Read</strong></p>
+                <p><strong>Discover Your Next Great
+                    Read</strong></p>
                 <p>Explore thousands of books across all
                     genres. From bestsellers to hidden gems,
                     find the perfect book for every
@@ -34,6 +35,7 @@ function Home() {
             <section className="outer-container-articles">
                 <ProductCard/>
             </section>
+            <span className="loader"></span>
         </>
     );
 }

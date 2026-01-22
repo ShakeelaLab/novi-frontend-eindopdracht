@@ -20,6 +20,7 @@
     --transition: 0.3s ease;
     --nav-footer: linear-gradient(90deg, #243748, #4B749F);
     --menu-bar: #4B749F;
+    --card-bg: white;
 }
 
 html, body {
@@ -48,6 +49,7 @@ body {
     --foreground: var(--white);
     --nav-link: var(--white);
     --nav-link-hover: var(--yellow);
+    --card-bg: #1e1e1e;
     --transition: 0.3s ease;
 }
 
