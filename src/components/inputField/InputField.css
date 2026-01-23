@@ -14,7 +14,6 @@
     @media screen and (min-width: 768px) {
         .input-field {
             padding-left: 5px;
-            padding-right: 300px;
             height: 52px;
         }
     }
