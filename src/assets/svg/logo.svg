@@ -1,6 +1,7 @@
-<svg width="220" height="60" viewBox="0 0 220 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="10" y="35" width="40" height="8" rx="2" fill="#60a5fa"/>
-  <rect x="8" y="25" width="44" height="8" rx="2" fill="#3b82f6"/>
-  <rect x="12" y="15" width="36" height="8" rx="2" fill="#2563eb"/>
-  <text x="65" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white">bookstore</text>
+<svg width="280" height="60" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="12" width="8" height="36" rx="1" fill="#b0cae6"/>
+  <rect x="18" y="15" width="8" height="33" rx="1" fill="#CFDBD5"/>
+  <rect x="28" y="10" width="8" height="38" rx="1" fill="#F5CB5C"/>
+  <rect x="38" y="14" width="8" height="34" rx="1" fill="#555B6E"/>
+  <text x="55" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FAF9F9">bookstore</text>
 </svg>

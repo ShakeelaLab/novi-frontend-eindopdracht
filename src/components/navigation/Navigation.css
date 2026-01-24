@@ -119,6 +119,9 @@ nav {
     .mobile-toggle {
         display: none;
     }
+    .nav-outercontainer {
+        padding: 1rem 2rem;
+    }
 
 }
 
@@ -127,10 +130,11 @@ nav {
         position: relative;
         justify-content: flex-start;
         max-width: 90%;
+        padding: 0 2rem;
     }
 
     .company-logo {
-        width: 300px;
+        width: 400px;
     }
 
     .nav-links {

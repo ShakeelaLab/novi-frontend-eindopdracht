@@ -5,5 +5,11 @@ footer {
     text-align: center;
     width: 100%;
     margin-top: auto;
-    font-size: 1rem;
+    font-size: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+    footer {
+        font-size: 1rem;
+    }
 }
