@@ -12,7 +12,7 @@
     --dark-blue: #b0cae6;
     --light-grey: #555B6E;
     --light-blue: #CFDBD5;
-    --yellow: #F5CB5C; /* Light theme */
+    --yellow: #F5CB5C;
     --background: var(--white);
     --foreground: var(--black);
     --nav-link: var(--white);
@@ -49,7 +49,7 @@ body {
     --foreground: var(--white);
     --nav-link: var(--white);
     --nav-link-hover: var(--yellow);
-    --card-bg: #1e1e1e;
+    --card-bg: #334e69;
     --transition: 0.3s ease;
 }
 
@@ -90,6 +90,10 @@ a {
     text-decoration: none;
 }
 
+li {
+    list-style: none;
+}
+
 @media screen and (min-width: 768px) {
 
     body {
@@ -114,6 +118,10 @@ a {
 
     h5 {
         font-size: 1.7rem;
+    }
+
+    p{
+        font-size: 1rem;
     }
 
 }

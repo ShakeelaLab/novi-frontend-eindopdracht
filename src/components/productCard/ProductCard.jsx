@@ -1,47 +1,17 @@
 import './ProductCard.css';
 
-function ProductCard() {
+function ProductCard({img, alt, title, author, view_details}) {
     return (
-        <>
-            <article className="card">
-                    <div className="product-card">
-                        <img src="" alt=""/>
-                        <p>Lorem ipsum dolor sit amet,
-                            consectetur adipisicing elit.
-                            Deserunt dicta facilis libero
-                            magnam officia perferendis sunt
-                            suscipit ullam vitae
-                            voluptates!</p>
-                    </div>
-                <div className="product-card">
-                    <img src="" alt=""/>
-                    <p>Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit.
-                        Deserunt dicta facilis libero
-                        magnam officia perferendis sunt
-                        suscipit ullam vitae
-                        voluptates!</p>
-                </div>
-                <div className="product-card">
-                    <img src="" alt=""/>
-                    <p>Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit.
-                        Deserunt dicta facilis libero
-                        magnam officia perferendis sunt
-                        suscipit ullam vitae
-                        voluptates!</p>
-                </div>
-                <div className="product-card">
-                    <img src="" alt=""/>
-                    <p>Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit.
-                        Deserunt dicta facilis libero
-                        magnam officia perferendis sunt
-                        suscipit ullam vitae
-                        voluptates!</p>
-                </div>
+            <article className="product-card">
+                        <div className="image-wrapper">
+                            <img src={img} alt={alt}/>
+                        </div>
+                        <div className="card-content">
+                            <p><strong>Title: </strong>{title}</p>
+                            <p><strong>Author: </strong>{author}</p>
+                            <p><strong>Year: </strong>{view_details}</p>
+                        </div>
             </article>
-        </>
     );
 }
 
