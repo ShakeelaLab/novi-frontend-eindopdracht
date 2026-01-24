@@ -14,33 +14,47 @@ function Navigation() {
     return (
         <>
             <header>
-            <nav>
-                <div className="nav-outercontainer">
-                    <img className="company-logo" src={logo}
-                         alt="Brand logo"/>
-                    <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-                        <li>
-                            <NavLink
+                <nav>
+                    <div className="nav-outercontainer">
+                        <NavLink
+                            to="/">
+                            <img
+                                className="company-logo"
+                                src={logo}
+                                alt="Brand logo"/>
+                        </NavLink>
+                        <ul className="nav-links-desktop">
+                            <li><NavLink
                                 className={isActive}
                                 to="/">Home</NavLink></li>
-                        <li><NavLink
-                            className={isActive}
-                            to="favorites">Favorites</NavLink>
-                        </li>
-                        <li><NavLink
-                            className={isActive}
-                            to="login">Login</NavLink></li>
-                        <li className="mobile-toggle"> <ThemeToggle/> </li>
-                    </ul>
-                    <div className="nav-toggle-wrapper">
-                    <ThemeToggle/>
+                            <li><NavLink
+                                className={isActive}
+                                to="favorites">Favorites</NavLink>
+                            </li>
+                            <li><NavLink
+                                className={isActive}
+                                to="login">Login</NavLink>
+                            </li>
+                        </ul>
+                        <div className="nav-toggle-wrapper">
+                            <ThemeToggle/></div>
+                        <MenuBar
+                            className={`menu-bar ${menuOpen ? "open" : ""}`}
+                            onClick={() => setMenuOpen(prev => !prev)}/>
                     </div>
-                    <MenuBar
-                        className={`menu-bar ${menuOpen ? "open" : ""}`}
-                        onClick={() => setMenuOpen(prev => !prev)}
-                    />
-                </div>
-            </nav>
+                </nav>
+                <ul className={`nav-links-mobile ${menuOpen ? "open" : ""}`}>
+                    <li><NavLink className={isActive}
+                                 to="/">Home</NavLink></li>
+                    <li><NavLink className={isActive}
+                                 to="favorites">Favorites</NavLink>
+                    </li>
+                    <li><NavLink className={isActive}
+                                 to="login">Login</NavLink>
+                    </li>
+                    <li className="mobile-toggle">
+                        <ThemeToggle/></li>
+                </ul>
             </header>
         </>
     );

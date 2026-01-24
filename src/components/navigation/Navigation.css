@@ -17,6 +17,7 @@
 .default-menu-link {
     border-bottom: none;
 }
+
 /* ── 2. Areas ─────────────────────────────────────────────────── */
 
 /*    2.1 Navigation ──────────────────────────────────────────────── */
@@ -25,13 +26,7 @@ nav {
     background: var(--nav-footer);
     width: 100%;
     position: fixed;
-    display: flex;
-    z-index: 1000;
-}
-
-.nav-links a {
-    color: var(--nav-link);
-    transition: color var(--transition);
+    z-index: 100;
 }
 
 .nav-outercontainer {
@@ -51,15 +46,8 @@ nav {
     display: none;
     list-style: none;
     letter-spacing: 0.05em;
-}
-
-.nav-links a {
-    color: var(--nav-link);
-    transition: color var(--transition);
-}
-
-.nav-links a:hover {
-    color: var(--nav-link);
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links.open {
@@ -67,22 +55,51 @@ nav {
     flex-direction: column;
     gap: 1.5rem;
     position: absolute;
-    top: 4.2rem;
+    top: 3.3rem;
     right: 0;
     background-color: var(--menu-bar);
     padding: 2rem;
     width: 200px;
-    z-index: 999;
+    z-index: 50;
+}
+
+.nav-links a,
+.nav-links a:visited,
+.nav-links-desktop a,
+.nav-links-desktop a:visited,
+.nav-links-mobile a,
+.nav-links-mobile a:visited {
+    color: var(--nav-link);
+}
+
+
+.nav-links-desktop {
+    display: none;
+}
+
+.nav-links-mobile {
+    display: none;
+}
+
+.nav-links-mobile.open {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: absolute;
+    top: 3.3rem;
+    right: 0;
+    background: var(--menu-bar);
+    padding: 2rem;
+    width: 200px;
+    z-index: 50;
 }
 
 .menu-bar {
     display: block;
     cursor: pointer;
-    margin-left: 0;
 }
 
 .nav-toggle-wrapper {
-    margin-left: 0;
     display: none;
 }
 
@@ -92,24 +109,8 @@ nav {
 
 /* ── 3. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
-    .nav-links {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        padding-left: 0;
-        letter-spacing: 0.05em;
-    }
-
     .menu-bar {
         display: none;
-    }
-
-    .nav-links.open {
-        flex-direction: row;
-        position: static;
-        background: none;
-        padding: 0;
-        width: auto;
     }
 
     .nav-toggle-wrapper {
@@ -119,17 +120,54 @@ nav {
     .mobile-toggle {
         display: none;
     }
+
+    .nav-links {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        gap: 1rem;
+        background: none;
+        padding: 0;
+        width: auto;
+        margin-left: auto;
+        margin-right: 2rem;
+        z-index: 100;
+    }
+
+    .nav-links.open {
+        position: static;
+        background: none;
+        padding: 0;
+        width: auto;
+        flex-direction: row;
+    }
+
     .nav-outercontainer {
-        padding: 1rem 2rem;
+        max-width: 90%;
+        padding: 0.5rem 0rem;
+    }
+
+    .company-logo {
+        width: 270px;
+    }
+
+    .nav-links-desktop {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        margin-right: 1.5rem;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-links-mobile {
+        display: none;
     }
 
 }
 
 @media screen and (min-width: 992px) {
     .nav-outercontainer {
-        position: relative;
-        justify-content: flex-start;
-        max-width: 90%;
         padding: 0 2rem;
     }
 
@@ -138,10 +176,6 @@ nav {
     }
 
     .nav-links {
-        display: flex;
         gap: 3rem;
-        margin-left: auto;
-        margin-right: 2rem;
-        border: none;
     }
 }
