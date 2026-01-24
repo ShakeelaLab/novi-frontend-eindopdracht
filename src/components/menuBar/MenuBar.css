@@ -28,11 +28,11 @@
 }
 
 .menu-icon::before {
-    top: -15px;
+    top: -11px;
 }
 
 .menu-icon::after {
-    bottom: -15px;
+    bottom: -11px;
 }
 
 .menu-bar.open .menu-icon {

@@ -1,6 +1,6 @@
 import './InputField.css';
 
-function InputField({name,type,className,placeholder}) {
+function InputField({name,type,className,placeholder,value,onChange}) {
     return (
         <>
             <input
@@ -8,6 +8,8 @@ function InputField({name,type,className,placeholder}) {
                 className={`input-field ${className}`}
                 type={type}
                 placeholder={placeholder}
+                value={value}
+                onChange={onChange}
             />
         </>
     );

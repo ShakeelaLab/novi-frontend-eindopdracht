@@ -5,6 +5,7 @@
         height: 48px;
         border: 2px solid var(--dark-blue);
         outline: none;
+        font-size: 1rem;
     }
 
     .input-field:focus {
