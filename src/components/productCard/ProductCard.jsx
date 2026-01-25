@@ -1,6 +1,6 @@
 import './ProductCard.css';
 
-function ProductCard({img, alt, title, author, view_details}) {
+function ProductCard({img, alt, title, author, viewDetails,moreInfo,children}) {
     return (
             <article className="product-card">
                 <div className="image-wrapper">
@@ -13,7 +13,8 @@ function ProductCard({img, alt, title, author, view_details}) {
                         <div className="card-content">
                             <p><strong>Title: </strong>{title}</p>
                             <p><strong>Author: </strong>{author}</p>
-                            <p><strong>Year: </strong>{view_details}</p>
+                            <p><strong>Year: </strong>{viewDetails}</p>
+                            {children}
                         </div>
             </article>
     );

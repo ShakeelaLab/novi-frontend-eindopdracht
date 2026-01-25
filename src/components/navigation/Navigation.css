@@ -84,14 +84,16 @@ nav {
 .nav-links-mobile.open {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 1.5rem;
-    position: absolute;
+    position: fixed;
     top: 3.3rem;
     right: 0;
     background: var(--menu-bar);
     padding: 2rem;
     width: 200px;
     z-index: 50;
+    align-items: center;
 }
 
 .menu-bar {

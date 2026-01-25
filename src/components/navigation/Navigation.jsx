@@ -5,11 +5,28 @@ import ThemeToggle
 import React from "react";
 import MenuBar from "../menuBar/MenuBar.jsx";
 import {NavLink} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 function Navigation() {
-    const [isDark, setIsDark] = React.useState(false);
-    const [menuOpen, setMenuOpen] = React.useState(false);
+    const [isDark, setIsDark] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const isActive = ({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setMenuOpen(false);
+            }
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        if (!menuOpen) {
+            document.activeElement.blur();
+        }
+    }, [menuOpen]);
 
     return (
         <>
