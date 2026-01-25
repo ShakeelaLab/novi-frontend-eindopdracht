@@ -6,6 +6,7 @@ import ProductCard
     from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
 import {useState, useEffect} from "react";
+import {Link} from "react-router-dom";
 
 function Home() {
     const [page, setPage] = useState(0);
@@ -27,7 +28,7 @@ function Home() {
                 let url = "";
                 let params = {};
                 if (query === null) {
-                    url = "https://openlibrary.org/subjects/popular.json";
+                    url = "https://openlibrary.org/search.json?q=first_publish_year:[2025 TO 2026]&sort=trending";
                     params = {limit: 12,};
                 } else {
                     url = "https://openlibrary.org/search.json";
@@ -41,10 +42,7 @@ function Home() {
                     signal: controller.signal,
                     params,
                 });
-                const docs = query === null
-                    ? response.data.works
-
-                    : response.data.docs;
+                const docs = response.data.docs;
 
                 setBooks(docs || []);
             } catch (error) {
@@ -121,6 +119,9 @@ function Home() {
                         book.first_publish_date ||
                         "Unknown year";
 
+                    console.log(book.key);
+                    console.log("LINK:", `/works/${book.key.replace("/works/", "")}`);
+
                     return (
                         <ProductCard
                             key={book.key}
@@ -128,8 +129,13 @@ function Home() {
                             alt={title}
                             title={title}
                             author={author}
-                            view_details={year}
-                        />
+                            viewDetails={year}
+                            >
+                            <Link to={`/works/${book.key.replace("/works/", "")}`}
+                                  state={{ coverId }}
+                            >More info</Link>
+
+                        </ProductCard>
                     );
                 })}
             </section>

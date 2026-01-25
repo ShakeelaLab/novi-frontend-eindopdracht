@@ -1,8 +1,8 @@
 .product-card {
     color: var(--foreground);
     background: var(--card-bg);
-    width: 240px;
-    height: 380px;
+    width: 280px;
+    height: 480px;
     display: flex;
     flex-direction: column;
     padding: 1.2rem;

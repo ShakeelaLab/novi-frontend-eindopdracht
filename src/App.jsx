@@ -6,6 +6,8 @@ import Home from "./pages/homePage/Home.jsx";
 import Favorites from "./pages/favoritesPage/Favorites.jsx";
 import Login from "./pages/loginPage/Login.jsx";
 import Footer from "./components/footer/Footer.jsx"
+import BookDetails
+    from "./pages/bookDetails/BookDetails.jsx";
 
 function App() {
 
@@ -16,6 +18,7 @@ function App() {
         <main>
         <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/works/:bookId" element={<BookDetails />}/>
             <Route path="favorites" element={<Favorites />} />
             <Route path="login" element={<Login />} />
         </Routes>
