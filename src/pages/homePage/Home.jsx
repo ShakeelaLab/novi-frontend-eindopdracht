@@ -131,9 +131,17 @@ function Home() {
                             author={author}
                             viewDetails={year}
                             >
-                            <Link to={`/works/${book.key.replace("/works/", "")}`}
+                            <Link
+                                className="button-link-info"
+                                to={`/works/${book.key.replace("/works/", "")}`}
                                   state={{ coverId }}
                             >More info</Link>
+                            <Link
+                                className="button-favorites"
+                                to={`/works/${book.key.replace("/works/", "")}`}
+                                state={{ coverId }}
+                            > Add to favorites
+                            </Link>
 
                         </ProductCard>
                     );

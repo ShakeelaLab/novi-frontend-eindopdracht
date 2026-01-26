@@ -55,6 +55,10 @@
     border-radius: 4px;
 }
 
+.actions {
+    margin-top: auto;
+    padding-top: 1rem;
+}
 
 @media screen and (min-width: 768px) {
 }
