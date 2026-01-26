@@ -72,6 +72,21 @@
     margin: 2rem auto;
     color: firebrick;
 }
+
+.button-link-info, .button-favorites {
+    color: var(--black);
+    background-color: var(--yellow);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin: 0.2rem 0;
+    display: inline-block;
+    font-weight: 600;
+}
+.button-favorites{
+    background-color: var(--dark-blue);
+}
+
+
 /* ── 2. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
     .search-field {

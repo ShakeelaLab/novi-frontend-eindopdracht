@@ -55,20 +55,22 @@ function BookDetails() {
             )}
 
                 {bookInfo && (
-                    <section className="book-details">
-                        <h2>{bookInfo.title}</h2>
+                    <article className="book-details">
                         {coverUrl ? (
                             <img
                                 src={coverUrl}
                                 alt={bookInfo?.title || "Book cover"}
                             /> ) : ( <p>No image available</p> )}
-                        <p>About this book:&nbsp;
-                             {bookInfo?.description
+                        <div className="wrapper-summary">
+                            <h2>{bookInfo.title}</h2>
+                        <h3>About this book:&nbsp;</h3>
+                        <p>{bookInfo?.description
                                 ? (typeof bookInfo.description === "string"
                                     ? bookInfo.description
                                     : bookInfo.description?.value)
                                 : "No summary available."} </p>
-                    </section>)}
+                        </div>
+                    </article>)}
 
         </>
     );

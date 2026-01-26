@@ -14,8 +14,10 @@ function ProductCard({img, alt, title, author, viewDetails,moreInfo,children}) {
                             <p><strong>Title: </strong>{title}</p>
                             <p><strong>Author: </strong>{author}</p>
                             <p><strong>Year: </strong>{viewDetails}</p>
-                            {children}
                         </div>
+                <div className="actions">
+                    {children}
+                </div>
             </article>
     );
 }

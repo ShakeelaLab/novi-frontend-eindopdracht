@@ -1,13 +1,13 @@
 import './Button.css';
 
-function Button({text,type,className}) {
+function Button({text,type,className,children}) {
     return (
         <>
             <div>
                 <button
                     className={`button-styling ${className}`}
                     type={type}
-                >{text}</button>
+                >{text}{children}</button>
             </div>
         </>
     );
