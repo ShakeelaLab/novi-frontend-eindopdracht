@@ -7,6 +7,7 @@ import ProductCard
 import axios from "axios";
 import {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
+import {Heart} from "phosphor-react";
 
 function Home() {
     const [page, setPage] = useState(0);
@@ -44,7 +45,11 @@ function Home() {
                 });
                 const docs = response.data.docs;
 
-                setBooks(docs || []);
+                const filtered = docs.filter((book) => {
+                    const langs = book.language || [];
+                    return langs.includes("eng") || langs.includes("dut") || langs.includes("nld");
+                });
+                setBooks(filtered);
             } catch (error) {
                 if (axios.isCancel(error)) return;
                 setError(true);
@@ -127,20 +132,30 @@ function Home() {
                             key={book.key}
                             img={coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null}
                             alt={title}
-                            title={title}
+                            title={title.length > 45 ? title.slice(0, 45) + "..." : title}
                             author={author}
                             viewDetails={year}
-                            >
+                        >
                             <Link
                                 className="button-link-info"
                                 to={`/works/${book.key.replace("/works/", "")}`}
-                                  state={{ coverId }}
+                                state={{coverId}}
                             >More info</Link>
                             <Link
-                                className="button-favorites"
                                 to={`/works/${book.key.replace("/works/", "")}`}
-                                state={{ coverId }}
-                            > Add to favorites
+                                state={{coverId}}
+                            > <span
+                                className="wrapper-button-favorites"><button
+                                className="button-favorites"
+                            >Add to favorites
+                            </button>
+                                <Heart size={32}
+                                       color="var(--icon-color)"
+                                       weight="regular"/>
+                                <Heart size={32}
+                                       color="var(--icon-color)"
+                                       weight="fill"/>
+                                </span>
                             </Link>
 
                         </ProductCard>

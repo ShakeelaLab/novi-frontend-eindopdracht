@@ -2,6 +2,8 @@ import './BookDetails.css';
 import axios from "axios";
 import {useState, useEffect} from "react";
 import {useParams, useLocation} from "react-router-dom";
+import Button from "../../components/button/Button.jsx";
+import {CaretLeft} from "phosphor-react";
 
 function BookDetails() {
     const [bookInfo, setBookInfo] = useState(null);
@@ -9,6 +11,7 @@ function BookDetails() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [imgError, setImgError] = useState(false);
     const {state} = useLocation();
     const fallbackCoverId = state?.coverId;
 
@@ -54,23 +57,34 @@ function BookDetails() {
                 </p>
             )}
 
-                {bookInfo && (
-                    <article className="book-details">
-                        {coverUrl ? (
-                            <img
-                                src={coverUrl}
-                                alt={bookInfo?.title || "Book cover"}
-                            /> ) : ( <p>No image available</p> )}
-                        <div className="wrapper-summary">
-                            <h2>{bookInfo.title}</h2>
-                        <h3>About this book:&nbsp;</h3>
+            {bookInfo && (
+                <article className="book-details">
+                    <div
+                        className="media-column"> {imgError ? (
+                        <div className="no-image">No
+                            image</div>) : (
+                        <img src={coverUrl}
+                             alt={bookInfo?.title || "Book cover"}
+                             onError={() => setImgError(true)}/>)}
+
+                        <Button
+                            type="button"
+                            className="button-overview">
+                            <CaretLeft size={28}/>
+                            Back to overview
+                        </Button>
+                    </div>
+                    <div className="wrapper-summary">
+                        <h2>{bookInfo.title}</h2> <h3>About
+                        this book:</h3>
                         <p>{bookInfo?.description
-                                ? (typeof bookInfo.description === "string"
-                                    ? bookInfo.description
-                                    : bookInfo.description?.value)
-                                : "No summary available."} </p>
-                        </div>
-                    </article>)}
+                            ? (typeof bookInfo.description === "string"
+                                ? bookInfo.description
+                                : bookInfo.description?.value)
+                            : "No summary available."} </p>
+                    </div>
+                </article>)}
+
 
         </>
     );
