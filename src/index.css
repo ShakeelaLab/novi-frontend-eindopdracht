@@ -28,6 +28,7 @@
     --nav-footer: linear-gradient(90deg, #243748, #4B749F);
     --menu-bar: #4B749F;
     --card-bg: white;
+    --icon-color: var(--black);
 }
 #root {
     min-height: 100%;
@@ -53,6 +54,7 @@ body {
     --nav-link: var(--white);
     --nav-link-hover: var(--yellow);
     --card-bg: #334e69;
+    --icon-color: var(--yellow);
     --transition: 0.3s ease;
 }
 

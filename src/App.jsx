@@ -4,6 +4,7 @@ import Navigation
     from "./components/navigation/Navigation.jsx";
 import Home from "./pages/homePage/Home.jsx";
 import Favorites from "./pages/favoritesPage/Favorites.jsx";
+import SignIn from "./pages/signIn/SignIn.jsx";
 import Login from "./pages/loginPage/Login.jsx";
 import Footer from "./components/footer/Footer.jsx"
 import BookDetails
@@ -19,8 +20,10 @@ function App() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/works/:bookId" element={<BookDetails />}/>
-            <Route path="favorites" element={<Favorites />} />
-            <Route path="login" element={<Login />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/signin" element={<SignIn />} />
+            {/*<Route path="/signup"*/}
+            {/*       element={<SignUp/>}/>*/}
         </Routes>
         </main>
         <Footer />

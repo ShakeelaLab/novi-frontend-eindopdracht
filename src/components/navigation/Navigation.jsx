@@ -50,7 +50,7 @@ function Navigation() {
                             </li>
                             <li><NavLink
                                 className={isActive}
-                                to="login">Login</NavLink>
+                                to="/signin">Login</NavLink>
                             </li>
                         </ul>
                         <div className="nav-toggle-wrapper">
@@ -64,10 +64,10 @@ function Navigation() {
                     <li><NavLink className={isActive}
                                  to="/">Home</NavLink></li>
                     <li><NavLink className={isActive}
-                                 to="favorites">Favorites</NavLink>
+                                 to="/favorites">Favorites</NavLink>
                     </li>
                     <li><NavLink className={isActive}
-                                 to="login">Login</NavLink>
+                                 to="/signin">Login</NavLink>
                     </li>
                     <li className="mobile-toggle">
                         <ThemeToggle/></li>
