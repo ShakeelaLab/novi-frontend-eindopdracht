@@ -78,10 +78,10 @@ a, button, input {
 a {
     text-decoration: none;
 }
-a, button, [role="button"] {
+a, button, [role="button"], .nav-toggle-wrapper {
     -webkit-tap-highlight-color: transparent;
 }
-a:active, a:focus {
+a:active, a:focus, .nav-toggle-wrapper {
     background-color: transparent;
 }
 li {
