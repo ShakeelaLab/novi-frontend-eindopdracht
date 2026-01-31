@@ -1,43 +1,80 @@
-import {createContext, useState} from "react";
+import {createContext, useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
+import {jwtDecode} from 'jwt-decode';
 
 export const AuthContext = createContext({});
 
 function AuthContextProvider({ children }) {
-    const [isAuth, toggleIsAuth] = useState({
+    const [auth, toggleAuth] = useState({
         isAuth: false,
         user: '',
+        status: 'pending',
     });
+
+    useEffect(() => {
+        const jwtToken = localStorage.getItem('token');
+        if (jwtToken) {
+            const decoded = jwtDecode(jwtToken);
+            if (isTokenValid(decoded)) {
+                toggleAuth({
+                    isAuth: true,
+                    status: 'done',
+                    user: {
+                        email: decoded.email,
+                        roles: decoded.role,
+                    },
+                })
+            } else {
+                toggleAuth({
+                    ...auth,
+                    status: 'done',
+                })
+            }
+        } else {
+            toggleAuth({
+                ...auth,
+                status: 'done',
+            })
+        }
+    }, [])
+
     const navigate = useNavigate();
 
-    function isLoggedIn(email) {
-        toggleIsAuth({
-            isAuth: true,
-            user: email,
-        });
+    function login(userDetails) {
+        localStorage.setItem('token', userDetails.token);
         console.log('Gebruiker is ingelogd!');
+        toggleAuth({
+            isAuth: true,
+            status: 'done',
+            user: {
+                email: userDetails.user.email,
+                roles: userDetails.user.roles,
+            },
+        });
         navigate('/profile');
     }
 
-    function isLoggedOut() {
-        toggleIsAuth({
-            isAuth: false,
-            user: '',
-        });
+    function logout() {
         console.log('Gebruiker is uitgelogd!');
+        localStorage.removeItem('token');
+        toggleAuth({
+            isAuth: false,
+            user: null,
+            status: 'done',
+        })
         navigate('/');
     }
 
     const data = {
-        isAuthenticated: isAuth.isAuth,
-        user: isAuth.user,
-        login: isLoggedIn,
-        logout: isLoggedOut,
+        isAuth: auth.isAuth,
+        login: login,
+        logout: logout,
+        user: auth.user,
     };
 
     return (
         <AuthContext.Provider value={data}>
-            {children}
+            {auth.status === 'done' ? children : <p>Loading...</p>}
         </AuthContext.Provider>
     );
 }

@@ -2,15 +2,19 @@ import './Navigation.css';
 import logo from "../../assets/svg/logo.svg"
 import ThemeToggle
     from "/src/components/themeToggle/ThemeToggle.jsx";
-import React from "react";
+import React, {useContext} from "react";
 import MenuBar from "../menuBar/MenuBar.jsx";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 function Navigation() {
     const [isDark, setIsDark] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const isActive = ({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'
+
+    const {isAuth, logout, user} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleResize = () => {
@@ -46,12 +50,26 @@ function Navigation() {
                                 to="/">Home</NavLink></li>
                             <li><NavLink
                                 className={isActive}
-                                to="favorites">Favorites</NavLink>
+                                to="/favorites">Favorites</NavLink>
                             </li>
-                            <li><NavLink
-                                className={isActive}
-                                to="/signin">Login</NavLink>
-                            </li>
+                            {isAuth ?
+                                <>
+                                    <li><NavLink
+                                        className={isActive}
+                                        to="/profile">Profile</NavLink>
+                                    </li>
+                                    <li><NavLink
+                                        className={isActive}
+                                        to="/">Logout</NavLink>
+                                    </li>
+                                </>
+                                :
+                                <li><NavLink
+                                    className={isActive}
+                                    to="/signin">Login</NavLink>
+                                </li>
+                            }
+
                         </ul>
                         <div className="nav-toggle-wrapper">
                             <ThemeToggle/></div>
@@ -66,9 +84,23 @@ function Navigation() {
                     <li><NavLink className={isActive}
                                  to="/favorites">Favorites</NavLink>
                     </li>
-                    <li><NavLink className={isActive}
-                                 to="/signin">Login</NavLink>
-                    </li>
+                    {isAuth ?
+                        <>
+                            <li><NavLink
+                                className={isActive}
+                                to="/profile">Profile</NavLink>
+                            </li>
+                            <li><NavLink
+                                className={isActive}
+                                to="/">Logout</NavLink>
+                            </li>
+                        </>
+                        :
+                        <li><NavLink
+                            className={isActive}
+                            to="/signin">Login</NavLink>
+                        </li>
+                    }
                     <li className="mobile-toggle">
                         <ThemeToggle/></li>
                 </ul>

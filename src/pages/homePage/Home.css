@@ -89,8 +89,6 @@
     border: none;
     font-size: 1rem;
     cursor: pointer;
-}
-.wrapper-button-favorites {
     display: flex;
     align-items: center;
 }

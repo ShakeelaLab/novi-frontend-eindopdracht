@@ -30,6 +30,7 @@
     height: 250px;
     border-radius: 8px;
 }
+
 .wrapper-summary h2, h3 {
     margin-bottom: 1rem;
 }
@@ -65,17 +66,27 @@
 /*    4. Button ──────────────────────────────────────────────── */
 .button-overview {
     padding: 0.5rem 1rem;
-    display: flex; align-items: center; gap: 0.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
     color: var(--black);
     font-size: 1rem;
     font-weight: 600;
 }
 
 .media-column {
-    display: flex;
+    display: contents;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+}
+
+.button-overview {
+    display: none;
+}
+
+.button-mobile {
+    display: flex;
 }
 
 /*    5. Media Queries ──────────────────────────────────────────────── */
@@ -83,7 +94,6 @@
     .book-details {
         flex-direction: row;
         justify-content: center;
-        align-items: flex-start;
         padding-top: 3rem;
         margin: 0 auto;
     }
@@ -100,16 +110,27 @@
         margin-bottom: 1rem;
     }
 
-    .media-column {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
     .button-overview {
         padding: 1rem 2rem;
         font-size: 1.2rem;
     }
+
+    .wrapper-summary {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 1rem;
+    }
+
+    .button-mobile {
+        display: flex;
+        margin-top: 1rem;
+    }
+
+    .media-column .button-overview {
+        display: none;
+    }
+
 }
 
 @media screen and (min-width: 992px) {

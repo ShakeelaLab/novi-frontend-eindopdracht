@@ -6,7 +6,7 @@ import ProductCard
     from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
 import {useState, useEffect} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Heart} from "phosphor-react";
 
 function Home() {
@@ -17,6 +17,12 @@ function Home() {
     const [query, setQuery] = useState(null);
     const [books, setBooks] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+    const navigate = useNavigate();
+
+
+    function handleFavoriteClick(book, coverId) {
+    console.log('ok')
+    }
 
     useEffect(() => {
         const controller = new AbortController();
@@ -92,7 +98,8 @@ function Home() {
                 </label>
             </form>
 
-            {loading && <span className="loader"></span>}
+            {loading &&
+                <span className="loader"></span>}
 
             {error && (
                 <p className="error-message">
@@ -105,13 +112,17 @@ function Home() {
                 <p><strong>Discover Your Next Great
                     Read</strong></p>
                 <p>
-                    Explore thousands of books across all
-                    genres. From bestsellers to hidden gems,
-                    find the perfect book for every moment.
+                    Explore thousands of books across
+                    all
+                    genres. From bestsellers to hidden
+                    gems,
+                    find the perfect book for every
+                    moment.
                 </p>
             </section>
 
-            <section className="outer-container-articles">
+            <section
+                className="outer-container-articles">
                 {books.map((book) => {
                     const coverId = book.cover_i || book.cover_id;
                     const title = book.title;
@@ -141,23 +152,17 @@ function Home() {
                                 to={`/works/${book.key.replace("/works/", "")}`}
                                 state={{coverId}}
                             >More info</Link>
-                            <Link
-                                to={`/works/${book.key.replace("/works/", "")}`}
-                                state={{coverId}}
-                            > <span
-                                className="wrapper-button-favorites"><button
+                            <Button
                                 className="button-favorites"
-                            >Add to favorites
-                            </button>
-                                <Heart size={32}
-                                       color="var(--icon-color)"
-                                       weight="regular"/>
-                                <Heart size={32}
-                                       color="var(--icon-color)"
-                                       weight="fill"/>
-                                </span>
-                            </Link>
-
+                                onClick={() => handleFavoriteClick(book, coverId)}> Add
+                                to favorites <Heart
+                                    size={32}
+                                    color="var(--icon-color)"
+                                    weight="regular"/>
+                                {/*<Heart size={32}*/}
+                                {/*       color="var(--icon-color)"*/}
+                                {/*       weight="fill"/>*/}
+                            </Button>
                         </ProductCard>
                     );
                 })}
