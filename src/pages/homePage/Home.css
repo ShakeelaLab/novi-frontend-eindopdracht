@@ -7,6 +7,7 @@
       1.4 Loader
       1.5 Error message
       1.6 Pagination
+      1.7 Heading bookresults
    2. Media Queries
    ──────────────────────────────────────────────────────────────── */
 
@@ -30,7 +31,7 @@
 
 .home-button-input {
     margin: 1rem 0 0 0;
-    padding: 10px 10px;
+    padding: 15px 20px;
 }
 
 .search-input {
@@ -127,6 +128,19 @@
     pointer-events: none;
 }
 
+/*    1.7 Heading bookresults ──────────────────────────────────────────────── */
+.heading-bookresults {
+    display: flex;
+    justify-content: space-between;
+    /*border: 2px solid red;*/
+    margin: 0 2rem 1rem 2rem;
+}
+
+.heading-bookresults p {
+    border-bottom: 2px solid black;
+    width: 180px;
+}
+
 /* ── 2. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
     .search-field {
@@ -169,5 +183,9 @@
     .pagination {
         margin-top: 2rem;
         gap: 8rem;
+    }
+    .heading-bookresults p {
+        width: 250px;
+        font-size: 1.5rem;
     }
 }

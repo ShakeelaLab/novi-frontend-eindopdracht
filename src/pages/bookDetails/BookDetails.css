@@ -30,6 +30,15 @@
     border-radius: 10px;
 }
 
+.wrapper-summary {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
 .wrapper-summary h2, h3 {
     margin-bottom: 1rem;
 }
@@ -94,6 +103,7 @@
     .book-details {
         flex-direction: row;
         justify-content: center;
+        align-items: flex-start;
         padding-top: 3rem;
         margin: 0 auto;
     }

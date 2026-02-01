@@ -123,7 +123,10 @@ function Home() {
                     moment.
                 </p>
             </section>
-
+            <span className="heading-bookresults">
+                <p>New and trending</p>
+                <button>sort</button>
+            </span>
             <section
                 className="outer-container-articles">
                 {results.map((book) => {
