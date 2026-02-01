@@ -5,18 +5,26 @@ import InputField
 import ProductCard
     from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {Link} from "react-router-dom";
-import {Heart} from "phosphor-react";
+import {CaretLeft, CaretRight, Heart} from "phosphor-react";
+import {SearchContext} from "../../context/SearchContext.jsx";
 
 function Home() {
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [query, setQuery] = useState(null);
-    const [books, setBooks] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+    const [totalResults, setTotalResults] = useState(0);
+    const { query, setQuery, results, setResults } = useContext(SearchContext);
+
+    const hasNextPage = (page + 1) * 12 < totalResults;
+    const hasPrevPage = page > 0;
+
+    function handleFavoriteClick(book, coverId) {
+    console.log('ok')
+    }
 
     useEffect(() => {
         const controller = new AbortController();
@@ -28,7 +36,7 @@ function Home() {
             try {
                 let url = "";
                 let params = {};
-                if (query === null) {
+                if (!query) {
                     url = "https://openlibrary.org/search.json?q=first_publish_year:[2025 TO 2026]&sort=trending";
                     params = {limit: 12,};
                 } else {
@@ -49,7 +57,8 @@ function Home() {
                     const langs = book.language || [];
                     return langs.includes("eng") || langs.includes("dut") || langs.includes("nld");
                 });
-                setBooks(filtered);
+                setResults(filtered);
+                setTotalResults(response.data.numFound);
             } catch (error) {
                 if (axios.isCancel(error)) return;
                 setError(true);
@@ -92,7 +101,8 @@ function Home() {
                 </label>
             </form>
 
-            {loading && <span className="loader"></span>}
+            {loading &&
+                <span className="loader"></span>}
 
             {error && (
                 <p className="error-message">
@@ -105,14 +115,18 @@ function Home() {
                 <p><strong>Discover Your Next Great
                     Read</strong></p>
                 <p>
-                    Explore thousands of books across all
-                    genres. From bestsellers to hidden gems,
-                    find the perfect book for every moment.
+                    Explore thousands of books across
+                    all
+                    genres. From bestsellers to hidden
+                    gems,
+                    find the perfect book for every
+                    moment.
                 </p>
             </section>
 
-            <section className="outer-container-articles">
-                {books.map((book) => {
+            <section
+                className="outer-container-articles">
+                {results.map((book) => {
                     const coverId = book.cover_i || book.cover_id;
                     const title = book.title;
                     const author =
@@ -141,27 +155,39 @@ function Home() {
                                 to={`/works/${book.key.replace("/works/", "")}`}
                                 state={{coverId}}
                             >More info</Link>
-                            <Link
-                                to={`/works/${book.key.replace("/works/", "")}`}
-                                state={{coverId}}
-                            > <span
-                                className="wrapper-button-favorites"><button
+                            <Button
                                 className="button-favorites"
-                            >Add to favorites
-                            </button>
-                                <Heart size={32}
-                                       color="var(--icon-color)"
-                                       weight="regular"/>
-                                <Heart size={32}
-                                       color="var(--icon-color)"
-                                       weight="fill"/>
-                                </span>
-                            </Link>
-
+                                onClick={() => handleFavoriteClick(book, coverId)}> Add
+                                to favorites <Heart
+                                    size={32}
+                                    color="var(--icon-color)"
+                                    weight="regular"/>
+                                {/*<Heart size={32}*/}
+                                {/*       color="var(--icon-color)"*/}
+                                {/*       weight="fill"/>*/}
+                            </Button>
                         </ProductCard>
                     );
                 })}
             </section>
+            {query && (
+            <div className="pagination">
+                <span
+                    className={`prev ${!hasPrevPage ? "disabled" : ""}`}
+                    onClick={() => { if (hasPrevPage) setPage((p) => p - 1); }}
+                >
+                <CaretLeft size={32} />
+                    previous
+                </span>
+                <span
+                    className={`next ${!hasNextPage ? "disabled" : ""}`}
+                    onClick={() => { if (hasNextPage) setPage((p) => p + 1); }}
+                >
+                    next
+                <CaretRight size={32} />
+                </span>
+            </div>
+            )}
         </>
     );
 }

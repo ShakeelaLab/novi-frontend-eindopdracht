@@ -2,15 +2,20 @@ import './Navigation.css';
 import logo from "../../assets/svg/logo.svg"
 import ThemeToggle
     from "/src/components/themeToggle/ThemeToggle.jsx";
-import React from "react";
+import React, {useContext, useEffect, useState} from "react";
 import MenuBar from "../menuBar/MenuBar.jsx";
-import {NavLink} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {NavLink, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import { SearchContext } from "../../context/SearchContext.jsx";
 
 function Navigation() {
     const [isDark, setIsDark] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const isActive = ({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'
+    const { setQuery } = useContext(SearchContext);
+
+    const {isAuth, logout, user} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleResize = () => {
@@ -34,7 +39,9 @@ function Navigation() {
                 <nav>
                     <div className="nav-outercontainer">
                         <NavLink
-                            to="/">
+                            to="/"
+                            onClick={() => setQuery("")}
+                        >
                             <img
                                 className="company-logo"
                                 src={logo}
@@ -43,15 +50,31 @@ function Navigation() {
                         <ul className="nav-links-desktop">
                             <li><NavLink
                                 className={isActive}
-                                to="/">Home</NavLink></li>
+                                to="/"
+                                onClick={() => setQuery("")}
+                            >Home</NavLink></li>
                             <li><NavLink
                                 className={isActive}
-                                to="favorites">Favorites</NavLink>
+                                to="/favorites">Favorites</NavLink>
                             </li>
-                            <li><NavLink
-                                className={isActive}
-                                to="/signin">Login</NavLink>
-                            </li>
+                            {isAuth ?
+                                <>
+                                    <li><NavLink
+                                        className={isActive}
+                                        to="/profile">Profile</NavLink>
+                                    </li>
+                                    <li><NavLink
+                                        className={isActive}
+                                        to="/">Logout</NavLink>
+                                    </li>
+                                </>
+                                :
+                                <li><NavLink
+                                    className={isActive}
+                                    to="/signin">Login</NavLink>
+                                </li>
+                            }
+
                         </ul>
                         <div className="nav-toggle-wrapper">
                             <ThemeToggle/></div>
@@ -62,13 +85,29 @@ function Navigation() {
                 </nav>
                 <ul className={`nav-links-mobile ${menuOpen ? "open" : ""}`}>
                     <li><NavLink className={isActive}
-                                 to="/">Home</NavLink></li>
+                                 to="/"
+                                 onClick={() => setQuery("")}
+                    >Home</NavLink></li>
                     <li><NavLink className={isActive}
                                  to="/favorites">Favorites</NavLink>
                     </li>
-                    <li><NavLink className={isActive}
-                                 to="/signin">Login</NavLink>
-                    </li>
+                    {isAuth ?
+                        <>
+                            <li><NavLink
+                                className={isActive}
+                                to="/profile">Profile</NavLink>
+                            </li>
+                            <li><NavLink
+                                className={isActive}
+                                to="/">Logout</NavLink>
+                            </li>
+                        </>
+                        :
+                        <li><NavLink
+                            className={isActive}
+                            to="/signin">Login</NavLink>
+                        </li>
+                    }
                     <li className="mobile-toggle">
                         <ThemeToggle/></li>
                 </ul>

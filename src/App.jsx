@@ -9,6 +9,7 @@ import Login from "./pages/loginPage/Login.jsx";
 import Footer from "./components/footer/Footer.jsx"
 import BookDetails
     from "./pages/bookDetails/BookDetails.jsx";
+import Profile from "./pages/profile/Profile.jsx";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/works/:bookId" element={<BookDetails />}/>
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="/profile" element={<Profile />} />
             {/*<Route path="/signup"*/}
             {/*       element={<SignUp/>}/>*/}
         </Routes>

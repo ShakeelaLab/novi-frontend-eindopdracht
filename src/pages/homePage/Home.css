@@ -6,6 +6,7 @@
       1.3 Articles
       1.4 Loader
       1.5 Error message
+      1.6 Pagination
    2. Media Queries
    ──────────────────────────────────────────────────────────────── */
 
@@ -17,6 +18,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    min-width: 0;
 }
 
 .search-field {
@@ -26,6 +31,12 @@
 .home-button-input {
     margin: 1rem 0 0 0;
     padding: 10px 10px;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
 }
 
 /*    1.2 Main text ──────────────────────────────────────────────── */
@@ -48,6 +59,7 @@
     margin: 0 auto;
     gap: 1rem;
 }
+
 /*    1.4 Loader ──────────────────────────────────────────────── */
 .loader {
     width: 48px;
@@ -60,6 +72,7 @@
     animation: rotation 1s linear infinite;
     margin: 2rem auto;
 }
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -68,6 +81,7 @@
         transform: rotate(360deg);
     }
 }
+
 /*    1.5 Error message ──────────────────────────────────────────────── */
 .error-message {
     margin: 2rem auto;
@@ -84,15 +98,33 @@
     font-weight: 600;
     font-size: 1rem;
 }
-.button-favorites{
-    background-color: var(--dark-blue);
+
+.button-favorites {
     border: none;
-    font-size: 1rem;
-    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
 }
-.wrapper-button-favorites {
+
+/*    1.6 Pagination ──────────────────────────────────────────────── */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.pagination span {
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+.pagination .disabled {
+    opacity: 0.4;
+    pointer-events: none;
 }
 
 /* ── 2. Media Queries ─────────────────────────────────────────── */
@@ -110,10 +142,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        max-width: 600px;
     }
 
     .search-input {
-        width: 460px;
+        width: 100%;
+        max-width: 600px;
         height: 50px;
         padding: 0 1rem;
     }
@@ -130,5 +164,10 @@
 
     .main-text {
         padding: 2rem 0 4rem 0;
+    }
+
+    .pagination {
+        margin-top: 2rem;
+        gap: 8rem;
     }
 }

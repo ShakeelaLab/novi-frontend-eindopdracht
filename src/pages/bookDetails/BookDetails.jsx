@@ -1,7 +1,7 @@
 import './BookDetails.css';
 import axios from "axios";
 import {useState, useEffect} from "react";
-import {useParams, useLocation} from "react-router-dom";
+import {useParams, useLocation, useNavigate} from "react-router-dom";
 import Button from "../../components/button/Button.jsx";
 import {CaretLeft} from "phosphor-react";
 
@@ -14,6 +14,7 @@ function BookDetails() {
     const [imgError, setImgError] = useState(false);
     const {state} = useLocation();
     const fallbackCoverId = state?.coverId;
+    const navigate = useNavigate();
 
     useEffect(() => {
         const controller = new AbortController();
@@ -66,13 +67,6 @@ function BookDetails() {
                         <img src={coverUrl}
                              alt={bookInfo?.title || "Book cover"}
                              onError={() => setImgError(true)}/>)}
-
-                        <Button
-                            type="button"
-                            className="button-overview">
-                            <CaretLeft size={28}/>
-                            Back to overview
-                        </Button>
                     </div>
                     <div className="wrapper-summary">
                         <h2>{bookInfo.title}</h2> <h3>About
@@ -82,6 +76,14 @@ function BookDetails() {
                                 ? bookInfo.description
                                 : bookInfo.description?.value)
                             : "No summary available."} </p>
+                        <Button
+                            type="button"
+                            className="button-overview button-mobile"
+                            onClick={() => navigate(-1)}
+                        >
+                            <CaretLeft size={28}/>
+                            Back to overview
+                        </Button>
                     </div>
                 </article>)}
 
