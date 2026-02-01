@@ -5,20 +5,19 @@ import InputField
 import ProductCard
     from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {Heart} from "phosphor-react";
+import {CaretLeft, CaretRight, Heart} from "phosphor-react";
+import {SearchContext} from "../../context/SearchContext.jsx";
 
 function Home() {
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [query, setQuery] = useState(null);
-    const [books, setBooks] = useState([]);
     const [searchInput, setSearchInput] = useState("");
     const navigate = useNavigate();
-
+    const { query, setQuery, results, setResults } = useContext(SearchContext);
 
     function handleFavoriteClick(book, coverId) {
     console.log('ok')
@@ -34,7 +33,7 @@ function Home() {
             try {
                 let url = "";
                 let params = {};
-                if (query === null) {
+                if (!query) {
                     url = "https://openlibrary.org/search.json?q=first_publish_year:[2025 TO 2026]&sort=trending";
                     params = {limit: 12,};
                 } else {
@@ -55,7 +54,7 @@ function Home() {
                     const langs = book.language || [];
                     return langs.includes("eng") || langs.includes("dut") || langs.includes("nld");
                 });
-                setBooks(filtered);
+                setResults(filtered);
             } catch (error) {
                 if (axios.isCancel(error)) return;
                 setError(true);
@@ -123,7 +122,7 @@ function Home() {
 
             <section
                 className="outer-container-articles">
-                {books.map((book) => {
+                {results.map((book) => {
                     const coverId = book.cover_i || book.cover_id;
                     const title = book.title;
                     const author =
@@ -167,6 +166,16 @@ function Home() {
                     );
                 })}
             </section>
+            <div className="pagination">
+                <span className="prev">
+                <CaretLeft size={32} />
+                    previous
+                </span>
+                <span className="next">
+                    next
+                <CaretRight size={32} />
+                </span>
+            </div>
         </>
     );
 }

@@ -79,13 +79,12 @@ function BookDetails() {
                         <Button
                             type="button"
                             className="button-overview button-mobile"
-                            onClick={() => navigate('/')}
+                            onClick={() => navigate(-1)}
                         >
                             <CaretLeft size={28}/>
                             Back to overview
                         </Button>
                     </div>
-
                 </article>)}
 
 
