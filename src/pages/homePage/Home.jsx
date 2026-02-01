@@ -6,7 +6,7 @@ import ProductCard
     from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
 import {useState, useEffect, useContext} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {CaretLeft, CaretRight, Heart} from "phosphor-react";
 import {SearchContext} from "../../context/SearchContext.jsx";
 
@@ -16,8 +16,11 @@ function Home() {
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [searchInput, setSearchInput] = useState("");
-    const navigate = useNavigate();
+    const [totalResults, setTotalResults] = useState(0);
     const { query, setQuery, results, setResults } = useContext(SearchContext);
+
+    const hasNextPage = (page + 1) * 12 < totalResults;
+    const hasPrevPage = page > 0;
 
     function handleFavoriteClick(book, coverId) {
     console.log('ok')
@@ -55,6 +58,7 @@ function Home() {
                     return langs.includes("eng") || langs.includes("dut") || langs.includes("nld");
                 });
                 setResults(filtered);
+                setTotalResults(response.data.numFound);
             } catch (error) {
                 if (axios.isCancel(error)) return;
                 setError(true);
@@ -166,16 +170,24 @@ function Home() {
                     );
                 })}
             </section>
+            {query && (
             <div className="pagination">
-                <span className="prev">
+                <span
+                    className={`prev ${!hasPrevPage ? "disabled" : ""}`}
+                    onClick={() => { if (hasPrevPage) setPage((p) => p - 1); }}
+                >
                 <CaretLeft size={32} />
                     previous
                 </span>
-                <span className="next">
+                <span
+                    className={`next ${!hasNextPage ? "disabled" : ""}`}
+                    onClick={() => { if (hasNextPage) setPage((p) => p + 1); }}
+                >
                     next
                 <CaretRight size={32} />
                 </span>
             </div>
+            )}
         </>
     );
 }

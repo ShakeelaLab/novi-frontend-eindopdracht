@@ -18,6 +18,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    min-width: 0;
 }
 
 .search-field {
@@ -27,6 +31,12 @@
 .home-button-input {
     margin: 1rem 0 0 0;
     padding: 10px 10px;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
 }
 
 /*    1.2 Main text ──────────────────────────────────────────────── */
@@ -90,12 +100,9 @@
 }
 
 .button-favorites {
-    background-color: var(--dark-blue);
     border: none;
-    font-size: 1rem;
-    cursor: pointer;
     display: flex;
-    align-items: center;
+    gap: 0.5rem;
 }
 
 /*    1.6 Pagination ──────────────────────────────────────────────── */
@@ -115,6 +122,11 @@
     cursor: pointer;
 }
 
+.pagination .disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
 /* ── 2. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
     .search-field {
@@ -130,10 +142,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        max-width: 600px;
     }
 
     .search-input {
-        width: 460px;
+        width: 100%;
+        max-width: 600px;
         height: 50px;
         padding: 0 1rem;
     }
@@ -151,6 +165,7 @@
     .main-text {
         padding: 2rem 0 4rem 0;
     }
+
     .pagination {
         margin-top: 2rem;
         gap: 8rem;
