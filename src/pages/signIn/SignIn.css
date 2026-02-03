@@ -1,0 +1,149 @@
+/* ────────────────────────────────────────────────────────────────
+   TABLE OF CONTENTS
+   1. Global Styles
+   2. Typography
+   3. Layout
+      3.1 Reusables
+      3.2 Other
+   4. Areas
+      4.1 Header
+      4.2 Introduction
+   5. Media Queries
+   ──────────────────────────────────────────────────────────────── */
+
+/* ── 1. Global Styles ─────────────────────────────────────────── */
+
+/* ── 2. Typography ────────────────────────────────────────────── */
+
+/* ── 3. Layout ────────────────────────────────────────────────── */
+/*    3.1 Reusables ───────────────────────────────────────────── */
+/*    3.2 Other ───────────────────────────────────────────────── */
+
+/* ── 4. Areas ─────────────────────────────────────────────────── */
+/*    4.1 Header ──────────────────────────────────────────────── */
+/*    4.2 Introduction ────────────────────────────────────────── */
+
+/* ── 5. Media Queries ─────────────────────────────────────────── */
+
+
+.outer-container {
+    /*max-width: 1000px;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: flex-start;*/
+    /*width: 60vw;*/
+    margin-top: 2rem;
+    border-top: 1px solid var(--dark-blue);
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /*max-width: 800px;*/
+    /*width: 100%;*/
+    /*margin: 0 auto;*/
+    text-align: left;
+}
+
+label {
+    font-weight: 600;
+    color: var(--black);
+    margin-top: 1rem;
+}
+
+input, textarea {
+    border-radius: 3px;
+    border: 0.05rem solid lightgrey;
+    text-indent: 0.3rem;
+}
+
+input {
+    padding: 0.8rem 0;
+}
+
+.new-post-button {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.message {
+    color: firebrick;
+}
+
+.sign-in-button {
+    margin: 1rem 0 0 0;
+    padding: 15px 20px;
+}
+
+.login-section, .signup-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+.login-section h1 {
+    padding-top: 1rem;
+}
+
+.signup-section {
+    border-top: 1px solid var(--black);
+}
+
+.signup-section p:first-child {
+    padding-top: 1rem;
+}
+
+/* ── 5. Media Queries ─────────────────────────────────────────── */
+
+@media screen and (min-width: 768px) {
+    .inner-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .signup-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top: none;
+        text-align: center;
+    }
+
+    .outer-container {
+        display: flex;
+        justify-content: space-evenly;
+        width: 60vw;
+        margin: 10rem auto;
+    }
+
+    .divider {
+        width: 1px;
+        height: 100%;
+        background: var(--dark-blue);
+        margin: 0 2rem;
+    }
+
+    .login-section {
+        /*padding-right: 10rem;*/
+        flex: 1;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .outer-container {
+        width: 40vw;
+    }
+    input {
+        max-width: 350px;
+    }
+}
