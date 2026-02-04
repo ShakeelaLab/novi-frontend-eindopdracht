@@ -123,7 +123,13 @@ function Home() {
                     moment.
                 </p>
             </section>
-
+            <div className="heading-bookresults">
+                <p>New and trending</p>
+                <Button
+                    className="secondary-button"
+                    type="submit"
+                >Sort by: oldest to newest</Button>
+            </div>
             <section
                 className="outer-container-articles">
                 {results.map((book) => {

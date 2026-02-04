@@ -5,11 +5,11 @@ import Navigation
 import Home from "./pages/homePage/Home.jsx";
 import Favorites from "./pages/favoritesPage/Favorites.jsx";
 import SignIn from "./pages/signIn/SignIn.jsx";
-import Login from "./pages/loginPage/Login.jsx";
 import Footer from "./components/footer/Footer.jsx"
 import BookDetails
     from "./pages/bookDetails/BookDetails.jsx";
 import Profile from "./pages/profile/Profile.jsx";
+import SignUp from "./pages/signUp/SignUp.jsx";
 
 function App() {
 
@@ -24,8 +24,7 @@ function App() {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/profile" element={<Profile />} />
-            {/*<Route path="/signup"*/}
-            {/*       element={<SignUp/>}/>*/}
+            <Route path="/signup" element={<SignUp/>}/>
         </Routes>
         </main>
         <Footer />
