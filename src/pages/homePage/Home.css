@@ -131,8 +131,11 @@
 /*    1.7 Heading bookresults ──────────────────────────────────────────────── */
 .heading-bookresults {
     display: flex;
-    justify-content: space-between;
-    margin: 0 2rem 1rem 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
 }
 
 .heading-bookresults p {
@@ -182,6 +185,10 @@
     .pagination {
         margin-top: 2rem;
         gap: 8rem;
+    }
+    .heading-bookresults{
+        flex-direction: row;
+        margin: 0 2rem 1rem 2rem;
     }
     .heading-bookresults p {
         width: 250px;

@@ -5,7 +5,7 @@
     border-radius: 4px;
     border-width: 0;
     box-sizing: border-box;
-    color: #36395A;
+    color: var(--black);
     cursor: pointer;
     justify-content: center;
     line-height: 1;

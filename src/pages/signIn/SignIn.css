@@ -27,11 +27,6 @@
 
 
 .outer-container {
-    /*max-width: 1000px;*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*justify-content: flex-start;*/
-    /*width: 60vw;*/
     margin-top: 2rem;
     border-top: 1px solid var(--dark-blue);
 }
@@ -40,9 +35,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /*max-width: 800px;*/
-    /*width: 100%;*/
-    /*margin: 0 auto;*/
     text-align: left;
 }
 
@@ -71,10 +63,6 @@ input {
     color: firebrick;
 }
 
-.sign-in-button {
-    margin: 1rem 0 0 0;
-    padding: 15px 20px;
-}
 
 .login-section, .signup-section {
     display: flex;
@@ -137,13 +125,13 @@ input {
         /*padding-right: 10rem;*/
         flex: 1;
     }
+    input {
+        max-width: 350px;
+    }
 }
 
 @media screen and (min-width: 992px) {
     .outer-container {
         width: 40vw;
-    }
-    input {
-        max-width: 350px;
     }
 }

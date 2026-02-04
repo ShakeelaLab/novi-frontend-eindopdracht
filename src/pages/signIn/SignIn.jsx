@@ -1,12 +1,16 @@
 import './SignIn.css';
 import {useForm} from 'react-hook-form';
-import {useState} from "react";
+import {useState, useContext} from "react";
 import Button from "../../components/button/Button.jsx";
 import {At} from "phosphor-react";
 import InputField
     from "../../components/inputField/InputField.jsx";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import axios from "axios";
+import {Link} from "react-router-dom";
 
 function SignIn() {
+    const { login } = useContext(AuthContext);
 
     const {
         register,
@@ -14,30 +18,42 @@ function SignIn() {
         formState: {errors},
         reset
     } = useForm();
-    // const [postSubmitted, setPostSubmitted] = useState(false);
-    // const [loading, toggleLoading] = useState(false);
-    // const [createdPostId, setCreatedPostId] = useState(null);
+
+    async function handleFormSubmit(data) {
+
+        try {
+            const response = await axios.post(``,{
+                email:data.email,
+                password: data.password,
+            },{
+                headers: {
+                    'novi-education-project-id': '',
+                }
+            })
+            console.log(response);
+            login(response.data);
+        } catch (e) {
+            console.error(e);
+        }
+    }
 
     return (
         <>
             <section>
                 <form
                     className="outer-container"
-                    // onSubmit={handleSubmit(handleFormSubmit)}
+                    onSubmit={handleSubmit(handleFormSubmit)}
                 >
                     <div className="inner-container">
                         <section className="login-section">
                         <h1>Login</h1>
                         <label
-                            htmlFor="email">Emailaddress</label>
+                            htmlFor="email">Email address</label>
                         <InputField
                             type="text"
                             id="email-field"
                             {...register("email", {
-                                required: {
-                                    value: true,
-                                    message: "You need to fill in an emailaddress",
-                                },
+                                required:"You need to fill in an emailaddress",
                             })}
                         />
                         {errors.email &&
@@ -48,16 +64,13 @@ function SignIn() {
                             type="text"
                             id="password-field"
                             {...register("password", {
-                                required: {
-                                    value: true,
-                                    message: "You need to fill in a password",
-                                },
+                                required: "You need to fill in a password",
                             })}
                         />
                             {errors.password &&
                                 <p className="message">{errors.password.message}</p>}
                         <Button
-                        className="sign-in-button"
+                        className="secondary-button"
                         type="submit"
                         >
                             continue
@@ -67,20 +80,16 @@ function SignIn() {
                         <section className="signup-section">
                             <p>No account?</p>
                             <p>Here you can make an account</p>
-                            <Button
-                                className="sign-in-button"
-                                type="submit"
-                            >
-                                register
-                            </Button>
+                                <Link to="/signup">
+                                    <Button
+                                        className="secondary-button"
+                                        type="submit"
+                                    >
+                                    Register
+                                    </Button>
+                                </Link>
                         </section>
-                        {/*<Button type="submit"*/}
-                        {/*        text="Toevoegen"*/}
-                        {/*        className="new-post-button"*/}
-                        {/*        loading={loading}/>*/}
                     </div>
-                    {/*{postSubmitted &&*/}
-                    {/*    <p>text <Link to={`/allposts/${createdPostId}`}>text</Link></p>}*/}
                 </form>
             </section>
         </>
