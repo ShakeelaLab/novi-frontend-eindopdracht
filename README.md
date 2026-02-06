@@ -14,6 +14,7 @@ In deze app kan je zoeken naar boeken, waarna je een selectie van boeken te zien
 samenvatting en je kan je boek in je favorieten opslaan.
 
 **1.1 Screenshot van de Homepage**
+![homepage.png](src/assets/screenshots/homepage.png)
 
 **1.2 Screenshot van de Favorietenpagina**
 
