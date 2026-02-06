@@ -6,7 +6,7 @@
 
 :root::before {
     content: "";
-    position: fixed;
+    position: absolute;
     inset: 0;
     background: var(--background);
     transform: none;
@@ -37,7 +37,6 @@
     margin: auto;
     cursor: pointer;
     background: var(--foreground);
-    /*transition: background var(--transition);*/
     z-index: 100;
 }
 

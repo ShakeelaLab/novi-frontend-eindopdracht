@@ -1,4 +1,11 @@
+/* ────────────────────────────────────────────────────────────────
+   TABLE OF CONTENTS
+   1. Global Styles
+   2. Form
+   3. Media Queries
+   ──────────────────────────────────────────────────────────────── */
 
+/* ── 1. Global Styles ─────────────────────────────────────────── */
 .outer-container-register {
     /*border: 2px dashed purple;*/
     display: flex;
@@ -7,10 +14,17 @@
     border-top: 1px solid var(--dark-blue);
 }
 
-.message {
-    font-weight: bold;
+.outer-container-register h1 {
+    padding-top: 1rem;
 }
 
+/* ── 2. Form ────────────────────────────────────────────── */
+.message {
+    font-weight: bold;
+    color: var(--message);
+}
+
+/* ── 3. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
     .outer-container-register{
         margin: 10rem auto;

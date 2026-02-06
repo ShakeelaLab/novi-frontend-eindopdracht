@@ -45,7 +45,7 @@ function SignUp() {
                     type="text"
                     id="email-field"
                     {...register("email", {
-                        required:"You need to fill in an emailaddress",
+                        required:"This field is required",
                     })}
                 />
                 {errors.email &&
@@ -56,7 +56,7 @@ function SignUp() {
                     type="text"
                     id="password-field"
                     {...register("password", {
-                        required: "You need to fill in a password",
+                        required: "This field is required",
                     })}
                 />
                 {errors.password &&

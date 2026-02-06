@@ -1,36 +1,17 @@
 /* ────────────────────────────────────────────────────────────────
    TABLE OF CONTENTS
    1. Global Styles
-   2. Typography
-   3. Layout
-      3.1 Reusables
-      3.2 Other
-   4. Areas
-      4.1 Header
-      4.2 Introduction
-   5. Media Queries
+   2. Form
+   3. Media Queries
    ──────────────────────────────────────────────────────────────── */
 
 /* ── 1. Global Styles ─────────────────────────────────────────── */
-
-/* ── 2. Typography ────────────────────────────────────────────── */
-
-/* ── 3. Layout ────────────────────────────────────────────────── */
-/*    3.1 Reusables ───────────────────────────────────────────── */
-/*    3.2 Other ───────────────────────────────────────────────── */
-
-/* ── 4. Areas ─────────────────────────────────────────────────── */
-/*    4.1 Header ──────────────────────────────────────────────── */
-/*    4.2 Introduction ────────────────────────────────────────── */
-
-/* ── 5. Media Queries ─────────────────────────────────────────── */
-
-
 .outer-container {
     margin-top: 2rem;
     border-top: 1px solid var(--dark-blue);
 }
 
+/* ── 2. Form ────────────────────────────────────────────── */
 .inner-container {
     display: flex;
     flex-direction: column;
@@ -40,7 +21,6 @@
 
 label {
     font-weight: 600;
-    color: var(--black);
     margin-top: 1rem;
 }
 
@@ -60,7 +40,8 @@ input {
 }
 
 .message {
-    color: firebrick;
+    font-weight: bold;
+    color: var(--message);
 }
 
 
@@ -88,7 +69,7 @@ input {
     padding-top: 1rem;
 }
 
-/* ── 5. Media Queries ─────────────────────────────────────────── */
+/* ── 3. Media Queries ─────────────────────────────────────────── */
 
 @media screen and (min-width: 768px) {
     .inner-container {
