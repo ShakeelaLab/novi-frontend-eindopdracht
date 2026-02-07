@@ -181,12 +181,15 @@ function Home() {
             </section>
             <div ref={topRef}></div>
             <div className="heading-bookresults">
-                <p>New and trending</p>
-                <Button
-                    className="secondary-button"
-                    type="submit"
-                    onClick={toggleSort}
-                >Sort by: {sortDirection === "oldest" ? "oldest to newest" : "newest to oldest"}</Button>
+                {!query && <p>New and trending</p>}
+                {totalResults <= 1 ? null : <div className="sort-wrapper">
+                    <Button
+                        className="secondary-button"
+                        type="submit"
+                        onClick={toggleSort}
+                    >Sort
+                        by: {sortDirection === "oldest" ? "oldest to newest" : "newest to oldest"}</Button>
+                </div>}
             </div>
             <section
                 className="outer-container-articles">
@@ -236,7 +239,7 @@ function Home() {
                     );
                 })}
             </section>
-            {query && (
+            {query && totalResults <= 1 ? null : (
                 <div className="pagination">
                 <span
                     className={`prev ${!hasPrevPage ? "disabled" : ""}`}

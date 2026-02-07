@@ -2,7 +2,6 @@ import './SignIn.css';
 import {useForm} from 'react-hook-form';
 import {useState, useContext} from "react";
 import Button from "../../components/button/Button.jsx";
-import {At} from "phosphor-react";
 import InputField
     from "../../components/inputField/InputField.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
@@ -11,6 +10,7 @@ import {Link} from "react-router-dom";
 
 function SignIn() {
     const { login } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState("");
 
     const {
         register,
@@ -22,18 +22,19 @@ function SignIn() {
     async function handleFormSubmit(data) {
 
         try {
-            const response = await axios.post(``,{
+            const response = await axios.post(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/login`,{
                 email:data.email,
                 password: data.password,
             },{
                 headers: {
-                    'novi-education-project-id': '',
+                    'novi-education-project-id': 'fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8',
                 }
             })
             console.log(response);
             login(response.data);
         } catch (e) {
             console.error(e);
+            setLoginError("Email or password is incorrect");
         }
     }
 
@@ -61,7 +62,7 @@ function SignIn() {
                         <label
                             htmlFor="password">Password</label>
                         <InputField
-                            type="text"
+                            type="password"
                             id="password-field"
                             {...register("password", {
                                 required: "This field is required",
@@ -75,6 +76,7 @@ function SignIn() {
                         >
                             continue
                         </Button>
+                            <p className="login-error">{loginError}</p>
                         </section>
                         <span className="divider"></span>
                         <section className="signup-section">

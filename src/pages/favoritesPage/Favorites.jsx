@@ -7,14 +7,12 @@ import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 
 function Favorites() {
-    const { token } = useContext(AuthContext);
+    const { token, user } = useContext(AuthContext);
     const [favoriteIds, setFavoriteIds] = useState([]);
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-
-    const {user} = useContext(AuthContext);
 
     useEffect(() => {
         if(!token) return;
@@ -67,7 +65,7 @@ function Favorites() {
 
     }, [favoriteIds]);
 
-    if (!token) return <p className="message-login">You have to be logged in to see the favorites</p>;
+    if (!user) return <p className="message-login">You have to be logged in to see the favorites</p>;
 
     return (
         <>

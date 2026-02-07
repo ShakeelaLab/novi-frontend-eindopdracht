@@ -1,13 +1,14 @@
 import {createContext, useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
+import isTokenValid from '../helpers/isTokenValid';
 
 export const AuthContext = createContext({});
 
 function AuthContextProvider({ children }) {
     const [auth, toggleAuth] = useState({
         isAuth: false,
-        user: '',
+        user: null,
         status: 'pending',
     });
 

@@ -114,7 +114,7 @@
 .heading-bookresults {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
 
@@ -178,6 +178,9 @@
         margin: 0 2rem 2rem 2rem;
         justify-content: space-between;
     }
+
+    .sort-wrapper { margin-left: auto; }
+
     .heading-bookresults p {
         width: 250px;
         font-size: 1.5rem;

@@ -69,6 +69,10 @@ input {
     padding-top: 1rem;
 }
 
+.login-error {
+    font-weight: bold;
+}
+
 /* ── 3. Media Queries ─────────────────────────────────────────── */
 
 @media screen and (min-width: 768px) {
@@ -92,7 +96,7 @@ input {
         display: flex;
         justify-content: space-evenly;
         width: 60vw;
-        margin: 10rem auto;
+        margin: 10rem 0 0 auto;
     }
 
     .divider {

@@ -27,7 +27,7 @@
 /* ── 3. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
     .outer-container-register{
-        margin: 10rem auto;
+        margin: 10rem 0 0 auto;
         /*border: 2px dashed purple;*/
         min-width: 500px;
     }
