@@ -5,10 +5,22 @@ import InputField
 import ProductCard
     from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
-import {useState, useEffect, useContext} from "react";
+import {
+    useState,
+    useEffect,
+    useContext,
+    useRef
+} from "react";
 import {Link} from "react-router-dom";
 import {CaretLeft, CaretRight, Heart} from "phosphor-react";
-import {SearchContext} from "../../context/SearchContext.jsx";
+import {
+    sortByOldest,
+    sortByNewest
+} from "../../helpers/sortyByYear.js";
+import {
+    SearchContext
+} from "../../context/SearchContext.jsx";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 function Home() {
     const [page, setPage] = useState(0);
@@ -17,13 +29,37 @@ function Home() {
     const [errorMessage, setErrorMessage] = useState("");
     const [searchInput, setSearchInput] = useState("");
     const [totalResults, setTotalResults] = useState(0);
-    const { query, setQuery, results, setResults } = useContext(SearchContext);
+    const {
+        query,
+        setQuery,
+        results,
+        setResults
+    } = useContext(SearchContext);
+    const topRef = useRef(null);
+    const {token} = useContext(AuthContext);
 
     const hasNextPage = (page + 1) * 12 < totalResults;
     const hasPrevPage = page > 0;
+    const [sortDirection, setSortDirection] = useState("oldest");
 
-    function handleFavoriteClick(book, coverId) {
-    console.log('ok')
+
+    async function handleFavoriteClick(book, coverId) {
+        if (!token) return;
+        const workId = book.key.replace("/works/", "");
+        try {
+            await axios.post(
+                "", //"https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites"
+                {itemId: workId},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("Toegevoegd aan favorieten:", workId);
+        } catch (err) {
+            console.error("Error adding favorite:", err);
+        }
     }
 
     useEffect(() => {
@@ -72,6 +108,24 @@ function Home() {
         return () => controller.abort();
     }, [page, query]);
 
+    useEffect(() => {
+        if (query) {
+            topRef.current?.scrollIntoView({behavior: "smooth"});
+        }
+    }, [query]);
+
+    function toggleSort() {
+        if (sortDirection === "oldest") {
+            const sorted = sortByNewest(results);
+            setResults(sorted);
+            setSortDirection("newest");
+        } else {
+            const sorted = sortByOldest(results);
+            setResults(sorted);
+            setSortDirection("oldest");
+        }
+    }
+
     return (
         <>
             <form
@@ -112,8 +166,8 @@ function Home() {
             )}
 
             <section className="main-text">
-                <p><strong>Discover Your Next Great
-                    Read</strong></p>
+                <h4><strong>Discover Your Next Great
+                    Read</strong></h4>
                 <p>
                     Explore thousands of books across
                     all
@@ -122,13 +176,20 @@ function Home() {
                     find the perfect book for every
                     moment.
                 </p>
+                <p>Add them to your favorites, so that it
+                    will remind you what to read next.</p>
             </section>
+            <div ref={topRef}></div>
             <div className="heading-bookresults">
-                <p>New and trending</p>
-                <Button
-                    className="secondary-button"
-                    type="submit"
-                >Sort by: oldest to newest</Button>
+                {!query && <p>New and trending</p>}
+                {totalResults <= 1 ? null : <div className="sort-wrapper">
+                    <Button
+                        className="secondary-button"
+                        type="submit"
+                        onClick={toggleSort}
+                    >Sort
+                        by: {sortDirection === "oldest" ? "oldest to newest" : "newest to oldest"}</Button>
+                </div>}
             </div>
             <section
                 className="outer-container-articles">
@@ -152,8 +213,8 @@ function Home() {
                             key={book.key}
                             img={coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : null}
                             alt={title}
-                            title={title.length > 45 ? title.slice(0, 45) + "..." : title}
-                            author={author}
+                            title={title.length > 20 ? title.slice(0, 20) + "..." : title}
+                            author={author.length > 30 ? author.slice(0, 30) + "..." : author}
                             viewDetails={year}
                         >
                             <Link
@@ -161,38 +222,50 @@ function Home() {
                                 to={`/works/${book.key.replace("/works/", "")}`}
                                 state={{coverId}}
                             >More info</Link>
-                            <Button
-                                className="button-favorites"
-                                onClick={() => handleFavoriteClick(book, coverId)}> Add
-                                to favorites <Heart
-                                    size={32}
-                                    color="var(--icon-color)"
-                                    weight="regular"/>
-                                {/*<Heart size={32}*/}
-                                {/*       color="var(--icon-color)"*/}
-                                {/*       weight="fill"/>*/}
-                            </Button>
+                            <Link to={`/favorites`}>
+                                <Button
+                                    className="button-favorites"
+                                    onClick={() => handleFavoriteClick(book, coverId)}> Add
+                                    to favorites <Heart
+                                        size={32}
+                                        color="var(--icon-color)"
+                                        weight="regular"/>
+                                    {/*<Heart size={32}*/}
+                                    {/*       color="var(--icon-color)"*/}
+                                    {/*       weight="fill"/>*/}
+                                </Button>
+                            </Link>
                         </ProductCard>
                     );
                 })}
             </section>
-            {query && (
-            <div className="pagination">
+            {query && totalResults <= 1 ? null : (
+                <div className="pagination">
                 <span
                     className={`prev ${!hasPrevPage ? "disabled" : ""}`}
-                    onClick={() => { if (hasPrevPage) setPage((p) => p - 1); }}
+                    onClick={() => {
+                        if (hasPrevPage) {
+                            setPage((p) => p - 1);
+                            topRef.current?.scrollIntoView({behavior: "smooth"});
+                        }
+                    }}
                 >
-                <CaretLeft size={32} />
+                <CaretLeft size={32}/>
                     previous
                 </span>
-                <span
-                    className={`next ${!hasNextPage ? "disabled" : ""}`}
-                    onClick={() => { if (hasNextPage) setPage((p) => p + 1); }}
-                >
+                    <span
+                        className={`next ${!hasNextPage ? "disabled" : ""}`}
+                        onClick={() => {
+                            if (hasNextPage) {
+                                setPage((p) => p + 1);
+                                topRef.current?.scrollIntoView({behavior: "smooth"});
+                            }
+                        }}
+                    >
                     next
-                <CaretRight size={32} />
+                <CaretRight size={32}/>
                 </span>
-            </div>
+                </div>
             )}
         </>
     );

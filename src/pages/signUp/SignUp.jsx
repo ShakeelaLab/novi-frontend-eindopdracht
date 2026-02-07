@@ -4,9 +4,10 @@ import axios from "axios";
 import InputField
     from "../../components/inputField/InputField.jsx";
 import Button from "../../components/button/Button.jsx";
-import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+    const navigate = useNavigate();
 
     const {
         register,
@@ -18,16 +19,17 @@ function SignUp() {
     async function handleFormSubmit(data) {
 
         try {
-            const response = await axios.post(``,{
+            const response = await axios.post(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/users`,{
                 email:data.email,
                 password: data.password,
                 roles:['user'],
             },{
                 headers: {
-                    'novi-education-project-id': '',
+                    'novi-education-project-id': 'fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8',
                 }
             })
             console.log(response);
+            navigate("/signin");
         } catch (e) {
             console.error(e);
         }
@@ -45,7 +47,7 @@ function SignUp() {
                     type="text"
                     id="email-field"
                     {...register("email", {
-                        required:"You need to fill in an emailaddress",
+                        required:"This field is required",
                     })}
                 />
                 {errors.email &&
@@ -53,23 +55,22 @@ function SignUp() {
                 <label
                     htmlFor="password">Password</label>
                 <InputField
-                    type="text"
+                    type="password"
                     id="password-field"
                     {...register("password", {
-                        required: "You need to fill in a password",
+                        required: "This field is required",
                     })}
                 />
                 {errors.password &&
                     <p className="message">{errors.password.message}</p>}
-                <Link to="/signin">
                 <Button
                     className="secondary-button"
                     type="submit"
                 >
                     continue
                 </Button>
-                </Link>
             </form>
+            <p>Once your account has been created, you’ll be redirected to the login page.</p>
         </>
     );
 }

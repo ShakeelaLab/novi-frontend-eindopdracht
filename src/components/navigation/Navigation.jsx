@@ -14,7 +14,7 @@ function Navigation() {
     const isActive = ({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'
     const { setQuery } = useContext(SearchContext);
 
-    const {isAuth, logout, user} = useContext(AuthContext);
+    const {isAuth, logout} = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -65,7 +65,9 @@ function Navigation() {
                                     </li>
                                     <li><NavLink
                                         className={isActive}
-                                        to="/">Logout</NavLink>
+                                        onClick={logout}
+                                        to="/"
+                                    >Logout</NavLink>
                                     </li>
                                 </>
                                 :

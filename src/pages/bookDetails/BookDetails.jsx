@@ -78,7 +78,7 @@ function BookDetails() {
                             : "No summary available."} </p>
                         <Button
                             type="button"
-                            className="button-overview button-mobile"
+                            className="button-secondary button-overview button-mobile"
                             onClick={() => navigate(-1)}
                         >
                             <CaretLeft size={28}/>
