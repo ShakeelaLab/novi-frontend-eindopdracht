@@ -1,0 +1,7 @@
+.page-container-not-found h2 {
+    margin-bottom: 1rem;
+}
+
+.page-container-not-found a:hover {
+    border-bottom: 2px solid var(--black);
+}

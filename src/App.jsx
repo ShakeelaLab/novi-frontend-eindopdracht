@@ -10,6 +10,7 @@ import BookDetails
     from "./pages/bookDetails/BookDetails.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import SignUp from "./pages/signUp/SignUp.jsx";
+import NotFound from "./pages/notFound/notFound.jsx";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/signup" element={<SignUp/>}/>
+            <Route path="*" element={<NotFound />}/>
         </Routes>
         </main>
         <Footer />
