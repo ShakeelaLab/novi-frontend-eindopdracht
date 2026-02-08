@@ -48,27 +48,34 @@ function Navigation() {
                                 alt="Brand logo"/>
                         </NavLink>
                         <ul className="nav-links-desktop">
+                            <div className="link-background">
                             <li><NavLink
                                 className={isActive}
                                 to="/"
                                 onClick={() => setQuery("")}
                             >Home</NavLink></li>
+                                </div>
+                            <div className="link-background">
                             <li><NavLink
                                 className={isActive}
                                 to="/favorites">Favorites</NavLink>
                             </li>
+                            </div>
                             {isAuth ?
                                 <>
+                                <div className="link-background">
                                     <li><NavLink
                                         className={isActive}
                                         to="/profile">Profile</NavLink>
                                     </li>
+                                </div>
+                                <div className="link-background">
                                     <li><NavLink
-                                        className={isActive}
                                         onClick={logout}
                                         to="/"
                                     >Logout</NavLink>
                                     </li>
+                                </div>
                                 </>
                                 :
                                 <li><NavLink
@@ -76,7 +83,6 @@ function Navigation() {
                                     to="/signin">Login</NavLink>
                                 </li>
                             }
-
                         </ul>
                         <div className="nav-toggle-wrapper">
                             <ThemeToggle/></div>
@@ -86,29 +92,39 @@ function Navigation() {
                     </div>
                 </nav>
                 <ul className={`nav-links-mobile ${menuOpen ? "open" : ""}`}>
+                    <div className="link-background">
                     <li><NavLink className={isActive}
                                  to="/"
                                  onClick={() => setQuery("")}
                     >Home</NavLink></li>
+                    </div>
+                    <div className="link-background">
                     <li><NavLink className={isActive}
                                  to="/favorites">Favorites</NavLink>
                     </li>
+                    </div>
                     {isAuth ?
                         <>
+                        <div className="link-background">
                             <li><NavLink
                                 className={isActive}
                                 to="/profile">Profile</NavLink>
                             </li>
+                        </div>
+                            <div className="link-background">
                             <li><NavLink
-                                className={isActive}
+                                onClick={logout}
                                 to="/">Logout</NavLink>
                             </li>
+                        </div>
                         </>
                         :
+                        <div className="link-background">
                         <li><NavLink
                             className={isActive}
                             to="/signin">Login</NavLink>
                         </li>
+                        </div>
                     }
                     <li className="mobile-toggle">
                         <ThemeToggle/></li>

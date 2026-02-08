@@ -23,7 +23,7 @@ function BookDetails() {
             setLoading(true);
             setError(false);
             try {
-                const response = await axios.get(`https://openlibrary.org/works/${bookId}.json`, {
+                    const response = await axios.get(`https://openlibrary.org/works/${bookId}.json`, {
                     signal: controller.signal,
                 });
                 setBookInfo(response.data);
@@ -52,10 +52,19 @@ function BookDetails() {
         <>
             {loading && <span className="loader"></span>}
             {error && (
+                <>
                 <p className="error-message">
                     Something went wrong, try
                     again: <strong>{errorMessage}</strong>
                 </p>
+                <Button
+                type="button"
+                className="button-secondary button-overview"
+                onClick={() => navigate ("/")}
+            >
+        Back to homepage
+        </Button>
+                </>
             )}
 
             {bookInfo && (

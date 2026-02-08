@@ -12,6 +12,7 @@
 
 .active-menu-link {
     border-bottom: 1px solid var(--nav-link);
+    padding-bottom: 0.3rem;
 }
 
 .default-menu-link {
@@ -21,6 +22,11 @@
 /* ── 2. Areas ─────────────────────────────────────────────────── */
 
 /*    2.1 Navigation ──────────────────────────────────────────────── */
+
+.link-background:hover {
+    background-color: var(--black);
+    border-radius: 5px;
+}
 
 nav {
     background: var(--nav-footer);
@@ -72,6 +78,9 @@ nav {
     color: var(--nav-link);
 }
 
+.nav-links-desktop li, .nav-links-mobile li {
+    padding: 0.5rem;
+}
 
 .nav-links-desktop {
     display: none;
