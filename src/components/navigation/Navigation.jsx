@@ -78,10 +78,12 @@ function Navigation() {
                                 </div>
                                 </>
                                 :
+                                <div className="link-background">
                                 <li><NavLink
                                     className={isActive}
                                     to="/signin">Login</NavLink>
                                 </li>
+                                </div>
                             }
                         </ul>
                         <div className="nav-toggle-wrapper">

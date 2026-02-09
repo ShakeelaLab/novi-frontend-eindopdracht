@@ -1,11 +1,11 @@
-.outer-container {
+.outer-container-profile {
     margin-top: 2rem;
     border-top: 1px solid var(--dark-blue);
 }
 
 /* ── 3. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
-    .outer-container {
+    .outer-container-profile {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
