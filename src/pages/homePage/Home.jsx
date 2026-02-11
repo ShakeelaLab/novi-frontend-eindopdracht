@@ -145,6 +145,15 @@ function Home() {
                     const langs = book.language || [];
                     return langs.includes("eng") || langs.includes("dut") || langs.includes("nld");
                 });
+
+                if (filtered.length === 0) {
+                    setError(true);
+                    setErrorMessage("No books found for this search.");
+                    setResults([]);
+                    setLoading(false);
+                    return;
+                }
+
                 setResults(filtered);
                 setTotalResults(response.data.numFound);
             } catch (error) {
@@ -212,8 +221,7 @@ function Home() {
 
             {error && (
                 <p className="error-message">
-                    Something went wrong, try
-                    again: <strong>{errorMessage}</strong>
+                    <strong>{errorMessage}</strong>
                 </p>
             )}
 

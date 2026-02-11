@@ -56,6 +56,8 @@ function Favorites() {
     useEffect(() => {
         if (favoriteIds.length === 0) return;
 
+        const controller = new AbortController();
+
         async function fetchBooks() {
             try {
                 setLoading(true);
@@ -81,16 +83,17 @@ function Favorites() {
                 });
                 setBooks(booksData);
             } catch (error) {
+                if (axios.isCancel(error)) return;
                 console.error("Error fetching book details:", error);
                 setError(true);
-                setErrorMessage(error.message);
+                setErrorMessage(`Error fetching favorites: ${error.message}`);
             } finally {
                 setLoading(false);
             }
         }
 
         void fetchBooks();
-
+        return () => controller.abort();
     }, [favoriteIds]);
 
     if (!user) return <p className="message-login">You need to be logged in to see your favorites.</p>;
