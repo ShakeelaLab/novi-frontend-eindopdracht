@@ -73,5 +73,6 @@ Deze dependencies zijn gebruikt:
 ### **5 - Inloggen**
 
 Je kunt een account registreren of gebruikmaken van de voorbeeldaccount hieronder:
+---
 email: test5@gmail.com
 wachtwoord: Pass1234
