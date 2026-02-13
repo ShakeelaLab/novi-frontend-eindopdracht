@@ -60,6 +60,8 @@ function Profile() {
 
     return (
         <>
+            {loading &&
+                <span className="loader"></span>}
             <section className="outer-container-profile">
                 <h1>Profile page</h1>
                 <p><strong>Emailadres</strong>: {email}</p>

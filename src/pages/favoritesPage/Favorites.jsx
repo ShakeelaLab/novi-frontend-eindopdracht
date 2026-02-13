@@ -82,11 +82,13 @@ function Favorites() {
                     };
                 });
                 setBooks(booksData);
+                setError(false);
+                setErrorMessage("");
             } catch (error) {
                 if (axios.isCancel(error)) return;
-                console.error("Error fetching book details:", error);
+                console.error(error);
                 setError(true);
-                setErrorMessage(`Error fetching favorites: ${error.message}`);
+                setErrorMessage(`${error.message}`);
             } finally {
                 setLoading(false);
             }
@@ -128,11 +130,11 @@ function Favorites() {
 
             {error && (
                 <p className="error-message">
-                    Something went wrong, try
-                    again: <strong>{errorMessage}</strong>
+                    Please wait a moment or try again later.
+                    <br/>
+                    <strong>{errorMessage}</strong>
                 </p>
             )}
-
             <h1>Your favorites</h1>
 
             <section className="favorites-container">

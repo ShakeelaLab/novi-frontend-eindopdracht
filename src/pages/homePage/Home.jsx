@@ -3,7 +3,7 @@ import Button from "../../components/button/Button.jsx";
 import InputField from "../../components/inputField/InputField.jsx";
 import ProductCard from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
-import {useState, useEffect, useContext, useRef} from "react";
+import React, {useState, useEffect, useContext, useRef} from "react";
 import {Link} from "react-router-dom";
 import {CaretLeft, CaretRight, Heart} from "phosphor-react";
 import { sortByOldest, sortByNewest} from "../../helpers/sortyByYear.js";
@@ -221,6 +221,8 @@ function Home() {
 
             {error && (
                 <p className="error-message">
+                    Please wait a moment or try again later.
+                    <br/>
                     <strong>{errorMessage}</strong>
                 </p>
             )}

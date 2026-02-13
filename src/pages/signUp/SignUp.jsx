@@ -31,8 +31,8 @@ function SignUp() {
             })
             console.log(response);
             navigate("/signin");
-        } catch (e) {
-            console.error(e);
+        } catch (error) {
+            console.error(error);
         }
     }
 
