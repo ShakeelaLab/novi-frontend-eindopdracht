@@ -7,9 +7,9 @@
     - 2.1 Homepage  
     - 2.2 Favorietenpagina  
 - 3 **Installeren en benodigdheden**    
-- 4 **De applicatie starten**  
+- 4 **De applicatie draaien**  
 - 5 **Dependencies**  
-- 6 **Inloggen**  
+- 6 **Testgebruiker**  
 
 ---
 
@@ -40,7 +40,7 @@ Om te starten heb je Node.js nodig (https://nodejs.org/en/download/), controleer
 
 `node -v`
 
-### **4 - De applicatie starten**
+### **4 - De applicatie draaien**
 
 Als je het project gecloned hebt naar jouw locale machine, installeer je eerst alle dependencies door het volgende
 commando in de terminal te runnen:
@@ -71,7 +71,7 @@ Deze dependencies zijn gebruikt:
 - use-local-storage — ^3.0.0  
 ```
 
-### **6 - Inloggen**
+### **6 - Testgebruikers**
 
 Je kunt een account registreren of gebruikmaken van de voorbeeldaccount hieronder:
 
