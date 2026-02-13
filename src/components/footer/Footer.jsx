@@ -7,9 +7,15 @@ function Footer() {
     return (
         <>
             <div className="footer-icons">
-                <a href="https://www.facebook.com/"><img src={facebooklogo} alt="logo of facebook" /></a>
-                <a href="https://www.instagram.com/"><img src={instagramlogo} alt="logo of instagram" /></a>
-                <a href="mailto:info@jouwdomein.nl"> <img src={envelope} alt="image of an envelope" /></a>
+                <a href="https://www.facebook.com/">
+                    <img src={facebooklogo} alt="logo of facebook" />
+                </a>
+                <a href="https://www.instagram.com/">
+                    <img src={instagramlogo} alt="logo of instagram" />
+                </a>
+                <a href="mailto:info@jouwdomein.nl">
+                    <img src={envelope} alt="image of an envelope" />
+                </a>
             </div>
             <footer>&copy; Shakeela Jhagroe 2026 for Novi Hogeschool</footer>
         </>
