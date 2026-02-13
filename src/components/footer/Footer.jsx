@@ -7,13 +7,13 @@ function Footer() {
     return (
         <>
             <div className="footer-icons">
-                <a href="https://www.facebook.com/">
+                <a href="https://www.facebook.com/" target="_blank">
                     <img src={facebooklogo} alt="logo of facebook" />
                 </a>
-                <a href="https://www.instagram.com/">
+                <a href="https://www.instagram.com/" target="_blank">
                     <img src={instagramlogo} alt="logo of instagram" />
                 </a>
-                <a href="mailto:info@jouwdomein.nl">
+                <a href="mailto:info@jouwdomein.nl" target="_blank">
                     <img src={envelope} alt="image of an envelope" />
                 </a>
             </div>
