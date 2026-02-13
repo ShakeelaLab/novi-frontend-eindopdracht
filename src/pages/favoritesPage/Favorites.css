@@ -1,4 +1,53 @@
+/* ────────────────────────────────────────────────────────────────
+   TABLE OF CONTENTS
+   1. Global styles
+   2. Article
+   3. Error message
+   4. Message login
+   5. Media Queries
+   ──────────────────────────────────────────────────────────────── */
+/*    1. Global styles ──────────────────────────────────────────────── */
+
+h1 {
+    margin: 2rem auto;
+}
+
+/*    2. Articles ──────────────────────────────────────────────── */
+.favorites-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.button-remove-favorite {
+    color: var(--black);
+    background-color: var(--yellow);
+    padding: 1rem 1.2rem;
+    border-radius: 4px;
+    margin: 0.2rem 0;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/*    3. Error message ──────────────────────────────────────────────── */
+.error-message {
+    margin: 2rem auto;
+    color: firebrick;
+}
+
+/*    4. Message login ──────────────────────────────────────────────── */
+
 .message-login {
     margin: 3rem auto;
     font-size: 1.5rem;
+}
+
+/* ── 5. Media Queries ─────────────────────────────────────────── */
+@media screen and (min-width: 768px) {
+
 }

@@ -1,0 +1,30 @@
+.outer-container-profile {
+    margin-top: 2rem;
+    border-top: 1px solid var(--dark-blue);
+    display: flex;
+    flex-direction: column;
+}
+
+.outer-container-profile > h1 {
+    padding-top: 1rem;
+    margin-left: 0;
+}
+
+.message {
+    font-weight: bold;
+    color: var(--message);
+}
+
+.outer-container-profile > p {
+    padding-bottom: 1rem;
+}
+
+/* ── 3. Media Queries ─────────────────────────────────────────── */
+@media screen and (min-width: 768px) {
+    .outer-container-profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 10rem 0 0 auto;
+    }
+}

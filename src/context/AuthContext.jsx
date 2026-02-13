@@ -9,6 +9,7 @@ function AuthContextProvider({ children }) {
     const [auth, toggleAuth] = useState({
         isAuth: false,
         user: null,
+        token: null,
         status: 'pending',
     });
 
@@ -20,6 +21,7 @@ function AuthContextProvider({ children }) {
                 toggleAuth({
                     isAuth: true,
                     status: 'done',
+                    token: jwtToken,
                     user: {
                         email: decoded.email,
                         roles: decoded.role,
@@ -47,6 +49,7 @@ function AuthContextProvider({ children }) {
         toggleAuth({
             isAuth: true,
             status: 'done',
+            token: userDetails.token,
             user: {
                 email: userDetails.user.email,
                 roles: userDetails.user.roles,
@@ -71,6 +74,7 @@ function AuthContextProvider({ children }) {
         login: login,
         logout: logout,
         user: auth.user,
+        token: auth.token,
     };
 
     return (

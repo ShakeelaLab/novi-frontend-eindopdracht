@@ -4,6 +4,7 @@ import axios from "axios";
 import InputField
     from "../../components/inputField/InputField.jsx";
 import Button from "../../components/button/Button.jsx";
+import {isValidPassword, isValidEmail} from "../../helpers/inputCheck.js"
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
@@ -48,6 +49,8 @@ function SignUp() {
                     id="email-field"
                     {...register("email", {
                         required:"This field is required",
+                        validate: (value) =>
+                            isValidEmail(value) || "Please enter a valid email address",
                     })}
                 />
                 {errors.email &&
@@ -59,6 +62,9 @@ function SignUp() {
                     id="password-field"
                     {...register("password", {
                         required: "This field is required",
+                        validate: (value) =>
+                            isValidPassword(value) ||
+                            "Password must contain 6 characters, one uppercase letter and one number",
                     })}
                 />
                 {errors.password &&

@@ -1,26 +1,16 @@
 import './Home.css';
 import Button from "../../components/button/Button.jsx";
-import InputField
-    from "../../components/inputField/InputField.jsx";
-import ProductCard
-    from "../../components/productCard/ProductCard.jsx";
+import InputField from "../../components/inputField/InputField.jsx";
+import ProductCard from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
-import {
-    useState,
-    useEffect,
-    useContext,
-    useRef
-} from "react";
+import {useState, useEffect, useContext, useRef} from "react";
 import {Link} from "react-router-dom";
 import {CaretLeft, CaretRight, Heart} from "phosphor-react";
-import {
-    sortByOldest,
-    sortByNewest
-} from "../../helpers/sortyByYear.js";
-import {
-    SearchContext
-} from "../../context/SearchContext.jsx";
+import { sortByOldest, sortByNewest} from "../../helpers/sortyByYear.js";
+import { extractWorkId } from "../../helpers/extractWorkId.js";
+import {SearchContext} from "../../context/SearchContext.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import {jwtDecode} from "jwt-decode";
 
 function Home() {
     const [page, setPage] = useState(0);
@@ -29,36 +19,104 @@ function Home() {
     const [errorMessage, setErrorMessage] = useState("");
     const [searchInput, setSearchInput] = useState("");
     const [totalResults, setTotalResults] = useState(0);
-    const {
-        query,
-        setQuery,
-        results,
-        setResults
-    } = useContext(SearchContext);
+    const {query,setQuery,results,setResults} = useContext(SearchContext);
     const topRef = useRef(null);
-    const {token} = useContext(AuthContext);
+    const {token, isAuth} = useContext(AuthContext);
 
     const hasNextPage = (page + 1) * 12 < totalResults;
     const hasPrevPage = page > 0;
     const [sortDirection, setSortDirection] = useState("oldest");
+    const [favoriteItems, setFavoriteItems] = useState([]);
 
+    function handleSubmitButton(event) {
+        event.preventDefault();
+        if (!searchInput.trim()) return;
+        setPage(0);
+        setQuery(searchInput.trim());
+        setSearchInput("");
+    }
 
-    async function handleFavoriteClick(book, coverId) {
+    useEffect(() => {
         if (!token) return;
-        const workId = book.key.replace("/works/", "");
+
+        async function fetchFavorites() {
+            setLoading(true);
+            setError(false);
+            setErrorMessage("");
+            try {
+                const { userId } = jwtDecode(token);
+                const response = await axios.get("https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                    }
+                });
+                const userFavorites = response.data
+                    .filter(fav => fav.userId === userId)
+                    .map(fav => fav.itemId);
+                    setFavoriteItems(userFavorites);
+            } catch (error) {
+                console.error("Error fetching favorites:", error);
+                setError(true);
+                setErrorMessage(error.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+        void fetchFavorites();
+    }, [token]);
+
+
+    async function handleFavoriteClick(book) {
+        if (!token) return;
+        const workId = extractWorkId(book);
+        const { userId } = jwtDecode(token);
+
+        setLoading(true);
         try {
-            await axios.post(
-                "", //"https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites"
-                {itemId: workId},
+            const existing = await axios.get(
+                "https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
+                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                    },
+                }
+            );
+
+            const alreadyExists = existing.data.some(
+                fav => fav.itemId === String(workId)
+            );
+
+            if (alreadyExists) {
+                console.log("Book already in favorites:", workId);
+                return;
+            }
+            setFavoriteItems(prev => [...prev, workId]);
+            const newId = Date.now();
+            console.log("Sending favorite:", { id: newId, userId: userId, itemId: String(workId), });
+
+            await axios.post(
+                "https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites",
+                {
+                    id: newId,
+                    userId: userId,
+                    itemId: String(workId),
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
                     },
                 }
             );
             console.log("Toegevoegd aan favorieten:", workId);
-        } catch (err) {
-            console.error("Error adding favorite:", err);
+        } catch (error) {
+            console.error("Error adding favorite:", error);
+            setError(true);
+            setErrorMessage(error.message);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -93,6 +151,15 @@ function Home() {
                     const langs = book.language || [];
                     return langs.includes("eng") || langs.includes("dut") || langs.includes("nld");
                 });
+
+                if (filtered.length === 0) {
+                    setError(true);
+                    setErrorMessage("No books found for this search.");
+                    setResults([]);
+                    setLoading(false);
+                    return;
+                }
+
                 setResults(filtered);
                 setTotalResults(response.data.numFound);
             } catch (error) {
@@ -130,13 +197,7 @@ function Home() {
         <>
             <form
                 className="search-field"
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    if (!searchInput.trim()) return;
-                    setPage(0);
-                    setQuery(searchInput.trim());
-                    setSearchInput("");
-                }}
+                onSubmit={handleSubmitButton}
             >
                 <label className="search-wrapper">
                     <InputField
@@ -160,8 +221,7 @@ function Home() {
 
             {error && (
                 <p className="error-message">
-                    Something went wrong, try
-                    again: <strong>{errorMessage}</strong>
+                    <strong>{errorMessage}</strong>
                 </p>
             )}
 
@@ -182,14 +242,15 @@ function Home() {
             <div ref={topRef}></div>
             <div className="heading-bookresults">
                 {!query && <p>New and trending</p>}
-                {totalResults <= 1 ? null : <div className="sort-wrapper">
-                    <Button
-                        className="secondary-button"
-                        type="submit"
-                        onClick={toggleSort}
-                    >Sort
-                        by: {sortDirection === "oldest" ? "oldest to newest" : "newest to oldest"}</Button>
-                </div>}
+                {totalResults <= 1 ? null :
+                    <div className="sort-wrapper">
+                        <Button
+                            className="secondary-button"
+                            type="submit"
+                            onClick={toggleSort}
+                        >Sort
+                            by: {sortDirection === "oldest" ? "oldest to newest" : "newest to oldest"}</Button>
+                    </div>}
             </div>
             <section
                 className="outer-container-articles">
@@ -204,9 +265,8 @@ function Home() {
                         book.first_publish_year ||
                         book.first_publish_date ||
                         "Unknown year";
-
-                    console.log(book.key);
-                    console.log("LINK:", `/works/${book.key.replace("/works/", "")}`);
+                    const workId = extractWorkId(book);
+                    const isFavorite = favoriteItems.includes(workId);
 
                     return (
                         <ProductCard
@@ -222,24 +282,29 @@ function Home() {
                                 to={`/works/${book.key.replace("/works/", "")}`}
                                 state={{coverId}}
                             >More info</Link>
-                            <Link to={`/favorites`}>
-                                <Button
-                                    className="button-favorites"
-                                    onClick={() => handleFavoriteClick(book, coverId)}> Add
-                                    to favorites <Heart
-                                        size={32}
-                                        color="var(--icon-color)"
-                                        weight="regular"/>
-                                    {/*<Heart size={32}*/}
-                                    {/*       color="var(--icon-color)"*/}
-                                    {/*       weight="fill"/>*/}
-                                </Button>
-                            </Link>
+                            { isAuth &&
+                            <Button
+                                className="button-favorites"
+                                disabled={isFavorite}
+                                onClick={() => handleFavoriteClick(book, coverId)}>
+
+                                {isFavorite ? (
+                                    <>
+                                    Added <Heart size={32} color="var(--icon-color)" weight="fill"/>
+                                    </>
+                                )
+                                    : (
+                                        <>
+                                            Add to favorites <Heart size={32} color="var(--icon-color)" weight="regular"/>
+                                        </>
+                                    )}
+                            </Button>
+                            }
                         </ProductCard>
                     );
                 })}
             </section>
-            {query && totalResults <= 1 ? null : (
+            {query && totalResults > 1  && (
                 <div className="pagination">
                 <span
                     className={`prev ${!hasPrevPage ? "disabled" : ""}`}

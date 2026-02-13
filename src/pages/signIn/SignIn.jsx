@@ -6,6 +6,7 @@ import InputField
     from "../../components/inputField/InputField.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import axios from "axios";
+import {isValidPassword, isValidEmail} from "../../helpers/inputCheck.js"
 import {Link} from "react-router-dom";
 
 function SignIn() {
@@ -55,6 +56,8 @@ function SignIn() {
                             id="email-field"
                             {...register("email", {
                                 required:"This field is required",
+                                validate: (value) =>
+                                    isValidEmail(value) || "Please enter a valid email address",
                             })}
                         />
                         {errors.email &&
@@ -66,6 +69,9 @@ function SignIn() {
                             id="password-field"
                             {...register("password", {
                                 required: "This field is required",
+                                validate: (value) =>
+                                    isValidPassword(value) ||
+                                    "Password must contain 6 characters, one uppercase letter and one number",
                             })}
                         />
                             {errors.password &&

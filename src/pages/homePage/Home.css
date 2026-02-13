@@ -80,6 +80,11 @@
     display: inline-block;
     font-weight: 600;
     font-size: 1rem;
+    transition: all 0.4s;
+}
+
+.button-link-info:hover, .button-favorites:hover {
+    transform: scale(1.1);
 }
 
 .button-favorites {
