@@ -3,12 +3,13 @@
 ## Index
 
 - 1 **Over Bookstore App**  
-- 2 **Screenshots**
-    - 2.1 Homepage
-    - 2.2 Favorietenpagina
-- 3 **Installeren en benodigdheden**   
-- 4 **De applicatie starten**
-- 5 **Inloggen** 
+- 2 **Screenshots**  
+    - 2.1 Homepage  
+    - 2.2 Favorietenpagina  
+- 3 **Installeren en benodigdheden**    
+- 4 **De applicatie starten**  
+- 5 **Dependencies**  
+- 6 **Inloggen**  
 
 ---
 
@@ -70,7 +71,7 @@ Deze dependencies zijn gebruikt:
 - use-local-storage — ^3.0.0  
 ```
 
-### **5 - Inloggen**
+### **6 - Inloggen**
 
 Je kunt een account registreren of gebruikmaken van de voorbeeldaccount hieronder:
 
