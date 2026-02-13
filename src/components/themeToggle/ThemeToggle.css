@@ -1,3 +1,10 @@
+/* ────────────────────────────────────────────────────────────────
+   TABLE OF CONTENTS
+   1. Global Styles
+   2. Toggle
+   3. Media Queries
+   ──────────────────────────────────────────────────────────────── */
+/* ── 1. Global Styles ─────────────────────────────────────────── */
 :root {
     background: var(--background);
     color: var(--foreground);
@@ -14,6 +21,7 @@
     z-index: -1;
 }
 
+/* ── 2. Toggle ────────────────────────────────────────────── */
 .hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -96,7 +104,7 @@
 [data-theme="dark"] .toggle .icons .icon {
     color: var(--white);
 }
-
+/* ── 3. Media Queries ─────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
     .toggle-wrapper {
         margin: 0 auto;

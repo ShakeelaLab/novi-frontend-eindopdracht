@@ -1,9 +1,7 @@
 import './Home.css';
 import Button from "../../components/button/Button.jsx";
-import InputField
-    from "../../components/inputField/InputField.jsx";
-import ProductCard
-    from "../../components/productCard/ProductCard.jsx";
+import InputField from "../../components/inputField/InputField.jsx";
+import ProductCard from "../../components/productCard/ProductCard.jsx";
 import axios from "axios";
 import {useState, useEffect, useContext, useRef} from "react";
 import {Link} from "react-router-dom";
@@ -29,6 +27,14 @@ function Home() {
     const hasPrevPage = page > 0;
     const [sortDirection, setSortDirection] = useState("oldest");
     const [favoriteItems, setFavoriteItems] = useState([]);
+
+    function handleSubmitButton(event) {
+        event.preventDefault();
+        if (!searchInput.trim()) return;
+        setPage(0);
+        setQuery(searchInput.trim());
+        setSearchInput("");
+    }
 
     useEffect(() => {
         if (!token) return;
@@ -59,6 +65,7 @@ function Home() {
         }
         void fetchFavorites();
     }, [token]);
+
 
     async function handleFavoriteClick(book) {
         if (!token) return;
@@ -112,7 +119,6 @@ function Home() {
             setLoading(false);
         }
     }
-
 
     useEffect(() => {
         const controller = new AbortController();
@@ -191,13 +197,7 @@ function Home() {
         <>
             <form
                 className="search-field"
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    if (!searchInput.trim()) return;
-                    setPage(0);
-                    setQuery(searchInput.trim());
-                    setSearchInput("");
-                }}
+                onSubmit={handleSubmitButton}
             >
                 <label className="search-wrapper">
                     <InputField
@@ -304,7 +304,7 @@ function Home() {
                     );
                 })}
             </section>
-            {query && totalResults <= 1 ? null : (
+            {query && totalResults > 1  && (
                 <div className="pagination">
                 <span
                     className={`prev ${!hasPrevPage ? "disabled" : ""}`}

@@ -98,7 +98,6 @@ function Favorites() {
 
     if (!user) return <p className="message-login">You need to be logged in to see your favorites.</p>;
 
-
     async function handleRemoveFavorite(favoriteId) {
         setLoading(true);
         try {

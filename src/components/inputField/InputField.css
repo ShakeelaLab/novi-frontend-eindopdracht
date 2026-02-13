@@ -1,22 +1,31 @@
+/* ────────────────────────────────────────────────────────────────
+   TABLE OF CONTENTS
+   1. Input field
+   2. Media Queries
+   ──────────────────────────────────────────────────────────────── */
+
+/* ── 1. Input field ─────────────────────────────────────────── */
+.input-field {
+    border-radius: 4px;
+    padding-left: 16px;
+    height: 48px;
+    border: 2px solid var(--dark-blue);
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.input-field:focus {
+    border-color: var(--dark-blue);
+}
+
+/* ── 2. Media Queries ─────────────────────────────────────────── */
+@media screen and (min-width: 768px) {
     .input-field {
-        border-radius: 4px;
-        padding-left: 16px;
-        height: 48px;
-        border: 2px solid var(--dark-blue);
-        outline: none;
-        font-size: 0.9rem;
+        padding-left: 5px;
+        height: 52px;
     }
 
-    .input-field:focus {
-        border-color: var(--dark-blue);
+    .input-field {
+        font-size: 1rem;
     }
-
-    @media screen and (min-width: 768px) {
-        .input-field {
-            padding-left: 5px;
-            height: 52px;
-        }
-        .input-field {
-            font-size: 1rem;
-        }
-    }
+}

@@ -58,7 +58,6 @@ function Profile() {
         void fetchFavorites();
     }, [token]);
 
-
     return (
         <>
             <section className="outer-container-profile">
