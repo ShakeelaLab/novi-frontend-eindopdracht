@@ -1,6 +1,6 @@
 import './BookDetails.css';
 import axios from "axios";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {useParams, useLocation, useNavigate} from "react-router-dom";
 import Button from "../../components/button/Button.jsx";
 import {CaretLeft} from "phosphor-react";
@@ -28,6 +28,8 @@ function BookDetails() {
                 });
                 setBookInfo(response.data);
                 console.log(response.data);
+                setError(false);
+                setErrorMessage("");
             } catch (error) {
                 if (axios.isCancel(error)) return;
                 setError(true);
@@ -53,10 +55,11 @@ function BookDetails() {
             {loading && <span className="loader"></span>}
             {error && (
                 <>
-                <p className="error-message">
-                    Something went wrong, try
-                    again: <strong>{errorMessage}</strong>
-                </p>
+                    <p className="error-message">
+                        Please wait a moment or try again later.
+                        <br/>
+                        <strong>{errorMessage}</strong>
+                    </p>
                 <Button
                 type="button"
                 className="button-secondary button-overview"

@@ -33,8 +33,8 @@ function SignIn() {
             })
             console.log(response);
             login(response.data);
-        } catch (e) {
-            console.error(e);
+        } catch (error) {
+            console.error(error);
             setLoginError("Email or password is incorrect");
         }
     }
