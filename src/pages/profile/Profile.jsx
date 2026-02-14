@@ -12,17 +12,7 @@ function Profile() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [button, setButton] = useState(true);
-    const [isOpen, setIsOpen] = useState(false);
     const { email } = jwtDecode(token);
-
-    function handleMainClick() {
-            setIsOpen(true);
-    }
-
-    function handleNoClick() {
-        setIsOpen(false);
-    }
 
     useEffect(() => {
         if (!token) return;
@@ -45,6 +35,7 @@ function Profile() {
                         id: fav.id,
                         itemId: fav.itemId
                     }))
+                // show total favorites
                 setFavoriteIds(favorites.length);
             } catch (error) {
                 console.error("Error fetching favorites:", error)
@@ -54,7 +45,6 @@ function Profile() {
                 setLoading(false);
             }
         }
-
         void fetchFavorites();
     }, [token]);
 
@@ -64,6 +54,7 @@ function Profile() {
                 <span className="loader"></span>}
             <section className="outer-container-profile">
                 <h1>Profile page</h1>
+                {/*show email from token*/}
                 <p><strong>Emailadres</strong>: {email}</p>
                 <p><strong>Favorite books: </strong>{favoriteIds} </p>
             </section>

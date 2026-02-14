@@ -12,6 +12,8 @@ import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 
 function Favorites() {
+    const url = `https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites`;
+
     const {token, user} = useContext(AuthContext);
     const [favoriteIds, setFavoriteIds] = useState([]);
     const [books, setBooks] = useState([]);
@@ -27,7 +29,7 @@ function Favorites() {
             setError(false);
             setErrorMessage("");
             try {
-                const response = await axios.get("https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites", {
+                const response = await axios.get(url, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",

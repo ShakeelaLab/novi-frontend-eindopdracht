@@ -9,13 +9,11 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import { SearchContext } from "../../context/SearchContext.jsx";
 
 function Navigation() {
-    const [isDark, setIsDark] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const isActive = ({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'
     const { setQuery } = useContext(SearchContext);
 
     const {isAuth, logout} = useContext(AuthContext);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const handleResize = () => {

@@ -1,5 +1,5 @@
 import './App.css'
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, Navigate} from "react-router-dom";
 import Navigation
     from "./components/navigation/Navigation.jsx";
 import Home from "./pages/homePage/Home.jsx";
@@ -11,9 +11,13 @@ import BookDetails
 import Profile from "./pages/profile/Profile.jsx";
 import SignUp from "./pages/signUp/SignUp.jsx";
 import NotFound from "./pages/notFound/notFound.jsx";
+import {useContext} from "react";
+import {
+    AuthContext
+} from "./context/AuthContext.jsx";
 
 function App() {
-
+    const { isAuth } = useContext(AuthContext);
 
   return (
     <>
@@ -24,7 +28,8 @@ function App() {
             <Route path="/works/:bookId" element={<BookDetails />}/>
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/profile" element={<Profile />} />
+            // user can only see the profilepage when logged in, isAuth=true
+            <Route path="/profile" element={isAuth ? <Profile />: <Navigate to="/"/>}/>
             <Route path="/signup" element={<SignUp/>}/>
             <Route path="*" element={<NotFound />}/>
         </Routes>

@@ -10,6 +10,7 @@ import {isValidPassword, isValidEmail} from "../../helpers/inputCheck.js"
 import {Link} from "react-router-dom";
 
 function SignIn() {
+    const url = `https://novi-backend-api-wgsgz.ondigitalocean.app/api/login`;
     const { login } = useContext(AuthContext);
     const [loginError, setLoginError] = useState("");
 
@@ -23,7 +24,7 @@ function SignIn() {
     async function handleFormSubmit(data) {
 
         try {
-            const response = await axios.post(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/login`,{
+            const response = await axios.post(url,{
                 email:data.email,
                 password: data.password,
             },{
@@ -31,7 +32,7 @@ function SignIn() {
                     'novi-education-project-id': 'fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8',
                 }
             })
-            console.log(response);
+            // data will be send to AuthContext function login, response.data=userDetails
             login(response.data);
         } catch (error) {
             console.error(error);
