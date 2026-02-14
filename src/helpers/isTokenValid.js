@@ -1,7 +1,8 @@
 function isTokenValid(decodedToken) {
 
     if (!decodedToken || !decodedToken.exp) return false;
-    const now = Date.now() / 1000;
+    // Math.floor so the value does not include any decimals
+    const now = Math.floor(Date.now() / 1000);
     return decodedToken.exp > now;
 }
 

@@ -13,6 +13,8 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import {jwtDecode} from "jwt-decode";
 
 function Home() {
+    const url = `https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites`;
+
     const [page, setPage] = useState(0);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
@@ -45,7 +47,7 @@ function Home() {
             setErrorMessage("");
             try {
                 const { userId } = jwtDecode(token);
-                const response = await axios.get("https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites", {
+                const response = await axios.get(url, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
@@ -75,7 +77,7 @@ function Home() {
         setLoading(true);
         try {
             const existing = await axios.get(
-                "https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites",
+                url,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -83,11 +85,9 @@ function Home() {
                     },
                 }
             );
-
             const alreadyExists = existing.data.some(
                 fav => fav.itemId === String(workId)
             );
-
             if (alreadyExists) {
                 console.log("Book already in favorites:", workId);
                 return;
@@ -96,8 +96,7 @@ function Home() {
             const newId = Date.now();
             console.log("Sending favorite:", { id: newId, userId: userId, itemId: String(workId), });
 
-            await axios.post(
-                "https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites",
+            await axios.post( url,
                 {
                     id: newId,
                     userId: userId,
@@ -155,6 +154,7 @@ function Home() {
                 if (filtered.length === 0) {
                     setError(true);
                     setErrorMessage("No books found for this search.");
+                    // all results saved in results
                     setResults([]);
                     setLoading(false);
                     return;
@@ -324,6 +324,7 @@ function Home() {
                         className={`next ${!hasNextPage ? "disabled" : ""}`}
                         onClick={() => {
                             if (hasNextPage) {
+                                // first page has 12 items and when next is clicked it will get multiplied with 12 items, next 12 items will show
                                 setPage((p) => p + 1);
                                 topRef.current?.scrollIntoView({behavior: "smooth"});
                             }
