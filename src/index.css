@@ -29,6 +29,7 @@
     --menu-bar: #4B749F;
     --card-bg: white;
     --icon-color: var(--black);
+    --icon-footer: var(--black);
     --message: firebrick;
 }
 #root {
@@ -56,6 +57,7 @@ body {
     --nav-link: var(--white);
     --card-bg: #334e69;
     --icon-color: var(--black);
+    --icon-footer: var(--white);
     --message: var(--yellow);
     --transition: 0.3s ease;
 }
