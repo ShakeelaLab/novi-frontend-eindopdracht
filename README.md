@@ -37,6 +37,8 @@ In deze applicatie kun je zoeken naar boeken. Je krijgt een selectie te zien met
 Screenshot Homepagina en Favorietenpagina:  
 Boekcover, image, auteur, jaar data uit bron, de data in mijn applicatie wordt opgehaald via de publieke API van Open Library : https://openlibrary.org/search.json
 
+De iconen (hart, Instagram, Facebook en envelop) zijn afkomstig van Phosphor Icons: https://phosphoricons.com
+
 ---
 
 ### **3 - Installeren en benodigdheden**
