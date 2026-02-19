@@ -5,7 +5,8 @@
 - 1 **Over Bookstore App**  
 - 2 **Screenshots**  
     - 2.1 Homepage  
-    - 2.2 Favorietenpagina  
+    - 2.2 Favorietenpagina
+    - 2.3 Bron
 - 3 **Installeren en benodigdheden**    
 - 4 **De applicatie draaien**  
 - 5 **Dependencies**  
@@ -25,11 +26,16 @@ In deze applicatie kun je zoeken naar boeken. Je krijgt een selectie te zien met
 
 ## **2 - Screenshots**
 
-### 2.2 Homepage
+### 2.2 Homepagina
 ![homepage.png](src/assets/screenshots/homepage.png)
+
 
 ### 2.2 Favorietenpagina
 ![favoritespage.png](src/assets/screenshots/favoritespage.png)
+
+### 2.3 Bron
+Screenshot Homepagina en Favorietenpagina:  
+Boekcover, image, auteur, jaar data uit bron, de data in mijn applicatie wordt opgehaald via de publieke API van Open Library : https://openlibrary.org/search.json
 
 ---
 
