@@ -7,6 +7,8 @@ import Button from "../../components/button/Button.jsx";
 import {isValidPassword, isValidEmail} from "../../helpers/inputCheck.js"
 import { useNavigate } from "react-router-dom";
 
+//Function to sign up
+
 function SignUp() {
     const navigate = useNavigate();
 

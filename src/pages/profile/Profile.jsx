@@ -3,8 +3,8 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
-import Button from "../../components/button/Button.jsx";
 
+// Function to retrieve profile data, emailaddress and favorite total count
 function Profile() {
 
     const {token, user} = useContext(AuthContext);

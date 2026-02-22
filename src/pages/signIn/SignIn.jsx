@@ -9,6 +9,8 @@ import axios from "axios";
 import {isValidPassword, isValidEmail} from "../../helpers/inputCheck.js"
 import {Link} from "react-router-dom";
 
+//Function to sign in
+
 function SignIn() {
     const url = `https://novi-backend-api-wgsgz.ondigitalocean.app/api/login`;
     const { login } = useContext(AuthContext);
