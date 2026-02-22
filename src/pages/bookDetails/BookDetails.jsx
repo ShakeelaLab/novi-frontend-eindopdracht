@@ -89,7 +89,6 @@ function BookDetails() {
                                 ? bookInfo.description
                                 : bookInfo.description?.value)
                             : "No summary available."} </p>
-                        //Button for going back to last visited page
                         <Button
                             type="button"
                             className="button-secondary button-overview button-mobile"
