@@ -5,6 +5,7 @@ import {useParams, useLocation, useNavigate} from "react-router-dom";
 import Button from "../../components/button/Button.jsx";
 import {CaretLeft} from "phosphor-react";
 
+//function to fetch details of the book
 function BookDetails() {
     const [bookInfo, setBookInfo] = useState(null);
     const {bookId} = useParams();
@@ -88,6 +89,7 @@ function BookDetails() {
                                 ? bookInfo.description
                                 : bookInfo.description?.value)
                             : "No summary available."} </p>
+                        //Button for going back to last visited page
                         <Button
                             type="button"
                             className="button-secondary button-overview button-mobile"
