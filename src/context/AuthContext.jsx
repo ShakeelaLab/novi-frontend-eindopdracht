@@ -4,9 +4,9 @@ import {jwtDecode} from 'jwt-decode';
 import isTokenValid from '../helpers/isTokenValid';
 import user from "phosphor-react/src/icons/User.js";
 import axios from "axios";
-
 export const AuthContext = createContext({});
 
+const apiKey = import.meta.env.VITE_API_KEY;
 function AuthContextProvider({children}) {
     const [auth, toggleAuth] = useState({
         isAuth: false,
@@ -30,7 +30,7 @@ function AuthContextProvider({children}) {
                         const response = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/users/${userId}`, {
                             headers: {
                                 Authorization: `Bearer ${jwtToken}`,
-                                "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                                'novi-education-project-id': apiKey,
                             }
                         });
                         // log id from backend

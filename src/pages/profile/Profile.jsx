@@ -4,9 +4,10 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 // Function to retrieve profile data, emailaddress and favorite total count
 function Profile() {
-
     const {token, user} = useContext(AuthContext);
     const [favoriteIds, setFavoriteIds] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -25,7 +26,7 @@ function Profile() {
                 const response = await axios.get("https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites", {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                        'novi-education-project-id': apiKey,
                     }
                 });
                 const {userId} = jwtDecode(token);

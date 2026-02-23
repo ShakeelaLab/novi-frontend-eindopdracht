@@ -9,13 +9,13 @@ import axios from "axios";
 import {isValidPassword, isValidEmail} from "../../helpers/inputCheck.js"
 import {Link} from "react-router-dom";
 
-//Function to sign in
+const apiKey = import.meta.env.VITE_API_KEY;
 
+//Function to sign in
 function SignIn() {
     const url = `https://novi-backend-api-wgsgz.ondigitalocean.app/api/login`;
     const { login } = useContext(AuthContext);
     const [loginError, setLoginError] = useState("");
-
     const {
         register,
         handleSubmit,
@@ -31,7 +31,7 @@ function SignIn() {
                 password: data.password,
             },{
                 headers: {
-                    'novi-education-project-id': 'fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8',
+                    'novi-education-project-id': apiKey,
                 }
             })
             // data will be send to AuthContext function login, response.data=userDetails

@@ -7,8 +7,9 @@ import Button from "../../components/button/Button.jsx";
 import {isValidPassword, isValidEmail} from "../../helpers/inputCheck.js"
 import { useNavigate } from "react-router-dom";
 
-//Function to sign up
+const apiKey = import.meta.env.VITE_API_KEY;
 
+//Function to sign up
 function SignUp() {
     const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ function SignUp() {
                 roles:['user'],
             },{
                 headers: {
-                    'novi-education-project-id': 'fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8',
+                    'novi-education-project-id': apiKey,
                 }
             })
             console.log(response);
