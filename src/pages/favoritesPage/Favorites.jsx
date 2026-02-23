@@ -11,6 +11,8 @@ import React, {
 import axios from "axios";
 import {jwtDecode} from "jwt-decode";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 function Favorites() {
     const url = `https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites`;
 
@@ -32,7 +34,7 @@ function Favorites() {
                 const response = await axios.get(url, {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                        'novi-education-project-id': apiKey,
                     }
                 });
                 const {userId} = jwtDecode(token);
@@ -110,7 +112,7 @@ function Favorites() {
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                        'novi-education-project-id': apiKey,
                     },
                 }
             );

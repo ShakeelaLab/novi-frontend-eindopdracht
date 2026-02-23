@@ -12,6 +12,8 @@ import {SearchContext} from "../../context/SearchContext.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import {jwtDecode} from "jwt-decode";
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 function Home() {
     const url = `https://novi-backend-api-wgsgz.ondigitalocean.app/api/favorites`;
 
@@ -50,7 +52,7 @@ function Home() {
                 const response = await axios.get(url, {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                        'novi-education-project-id': apiKey,
                     }
                 });
                 const userFavorites = response.data
@@ -81,7 +83,7 @@ function Home() {
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                        'novi-education-project-id': apiKey,
                     },
                 }
             );
@@ -105,7 +107,7 @@ function Home() {
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "novi-education-project-id": "fc3b1d4e-24cf-4767-8ccb-fce51b54f7f8",
+                        'novi-education-project-id': apiKey,
                     },
                 }
             );
