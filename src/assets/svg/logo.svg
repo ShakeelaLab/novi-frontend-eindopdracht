@@ -3,5 +3,5 @@
   <rect x="18" y="15" width="8" height="33" rx="1" fill="#CFDBD5"/>
   <rect x="28" y="10" width="8" height="38" rx="1" fill="#F5CB5C"/>
   <rect x="38" y="14" width="8" height="34" rx="1" fill="#555B6E"/>
-  <text x="55" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FAF9F9">bookstore</text>
+  <text x="55" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#333533">bookstore</text>
 </svg>
