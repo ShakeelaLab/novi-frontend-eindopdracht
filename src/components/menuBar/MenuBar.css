@@ -19,7 +19,7 @@
 }
 
 .menu-icon {
-    background-color: var(--white);
+    background-color: var(--menu-icon);
     position: relative;
     width: var(--menu-bar-width);
     height: var(--menu-bar-height);
@@ -27,7 +27,7 @@
 }
 
 .menu-icon::before, .menu-icon::after {
-    background-color: var(--white);
+    background-color: var(--menu-icon);
     content: "";
     width: var(--menu-bar-width);
     height: var(--menu-bar-height);
@@ -45,6 +45,7 @@
 
 .menu-bar.open .menu-icon {
     background-color: transparent;
+
 }
 
 .menu-bar.open .menu-icon::before {

@@ -40,10 +40,23 @@ function Navigation() {
                             to="/"
                             onClick={() => setQuery("")}
                         >
-                            <img
-                                className="company-logo"
-                                src={logo}
-                                alt="Brand logo"/>
+                            <div className="company-logo">
+                                <svg width="280" height="60" viewBox="0 0 280 60">
+                                    <rect x="8" y="12" width="8" height="36" rx="1" fill="#b0cae6"/>
+                                    <rect x="18" y="15" width="8" height="33" rx="1" fill="#CFDBD5"/>
+                                    <rect x="28" y="10" width="8" height="38" rx="1" fill="#F5CB5C"/>
+                                    <rect x="38" y="14" width="8" height="34" rx="1" fill="#555B6E"/>
+                                    <text
+                                        x="55"
+                                        y="40"
+                                        fontSize="28"
+                                        fontWeight="bold"
+                                        fill="currentColor"
+                                    >
+                                        bookstore
+                                    </text>
+                                </svg>
+                            </div>
                         </NavLink>
                         <ul className="nav-links-desktop">
                             <div className="link-background">
