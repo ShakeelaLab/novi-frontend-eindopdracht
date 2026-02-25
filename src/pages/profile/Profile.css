@@ -25,6 +25,5 @@
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        margin: 10rem 0 0 auto;
     }
 }

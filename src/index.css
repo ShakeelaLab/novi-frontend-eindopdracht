@@ -23,14 +23,15 @@
     --yellow: #F5CB5C;
     --background: var(--white);
     --foreground: var(--black);
-    --nav-link: var(--white);
+    --nav-link: var(--black);
     --transition: 0.3s ease;
-    --nav-footer: linear-gradient(90deg, #243748, #4B749F);
-    --menu-bar: #4B749F;
+    --menu-bar: var(--white);
     --card-bg: white;
     --icon-color: var(--black);
     --icon-footer: var(--black);
     --message: firebrick;
+    --menu-icon: var(--black);
+    --link-hover: var(--black)
 }
 #root {
     min-height: 100%;
@@ -55,11 +56,15 @@ body {
     --background: var(--black);
     --foreground: var(--white);
     --nav-link: var(--white);
-    --card-bg: #334e69;
+    --card-bg: var(--light-grey);
     --icon-color: var(--black);
     --icon-footer: var(--white);
     --message: var(--yellow);
     --transition: 0.3s ease;
+    --menu-icon: var(--white);
+    --menu-bar: var(--black);
+    --link-hover: var(--white);
+    --border: var(--white);
 }
 
 /* ── 2. Typography ────────────────────────────────────────────── */
