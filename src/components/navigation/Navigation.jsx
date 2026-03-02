@@ -1,5 +1,4 @@
 import './Navigation.css';
-import logo from "../../assets/svg/logo.svg"
 import ThemeToggle
     from "/src/components/themeToggle/ThemeToggle.jsx";
 import React, {useContext, useEffect, useState} from "react";

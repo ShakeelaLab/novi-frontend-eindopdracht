@@ -81,7 +81,7 @@ Deze dependencies zijn gebruikt:
 
 ### **6 - Testgebruikers**
 
-Je kunt een account registreren of gebruikmaken van de voorbeeldaccount hieronder:
+Je kunt een account registreren of gebruikmaken van het voorbeeldaccount hieronder:
 
 **email:** test5@gmail.com  
 **wachtwoord:** Pass1234  
